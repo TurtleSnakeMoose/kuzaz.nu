@@ -1,9 +1,10 @@
 *{
 	box-sizing: border-box;
+	color:#39798d;
 }
 
 body{
-	background: #277818;
+	background: #5eb5cf;
 	text-align: start;
 	font-family: 'Assistant';
 }

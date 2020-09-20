@@ -5,7 +5,7 @@ kzzn.txt = kzzn.txt || {};
 var content = {
     participants:{
         title:'Add participants',
-        additional_info: "Incases where a participant is paying for several participants, <br /> Specify the amount (including himself) and add don't add these people to the list."
+        additional_info: "Incases where a participant is paying for several participants, <br /> Specify the count (including himself) and add don't add these people to the list."
     },
     payments:{
         title:'cyka',

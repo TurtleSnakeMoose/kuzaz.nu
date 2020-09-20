@@ -44,15 +44,29 @@
 
 				<div id="participant_inputs">
 					<div class="input-group">
-						<input placeholder="Name" type="text" class="form-control">
-						<input placeholder="Amount" type="number" class="form-control">
-						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button">ADD</button>
+						<input id="input_name" placeholder="Name" type="text" maxlength="20" class="form-control">
+						<input id="input_count" placeholder="Count" type="number" value="1" min="1" max="30" class="form-control">
+						<div class="input-group-append btn_add" onclick="kzzn.site.addParticipant(this)">
+							<button class="btn btn-outline-secondary" type="button"><i tabindex="0" class="fa fa-plus"></i></button>
 						</div>
 					</div>
 				</div>
 
-				<div class="divider"></div>
+				<div id="participant_list" class="table">
+					<table class="hidden">
+						<thead>
+							<tr>
+								<td>#</td><td>Name</td><td>Count</td><td>Remove</td>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+
+				<div id="participant_summary">
+					<label></label>
+				</div>
 
 			</div>
 

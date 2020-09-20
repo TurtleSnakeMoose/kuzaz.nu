@@ -22,7 +22,6 @@
 
 .info_box{
     padding: 10px 20px;
-	color:#236a15;
 	line-height: 25px;
 }
 .info_box .title {
@@ -52,7 +51,7 @@
 }
 
 .divider{
-	border-bottom: 4px #f78154 ridge;
+	border-bottom: 4px #f1e08c ridge;
     width: 540px;
     margin: 0 auto;
 }
@@ -65,6 +64,78 @@
 
 #participant_inputs input{
 	text-align: center;
+	border-radius: 0;
+	background: #f8d37a;
+	border-color: #b3cd4a;
+}
+
+#participant_inputs #input_name{
+	width: 55%;
+}
+
+#participant_inputs .input-group-append{
+	width: 7%;
+}
+
+#participant_inputs button{
+	border-radius: 0;
+	background: #f8d37a;
+	border-color: #b3cd4a;
+}
+
+#participant_list{
+	max-height: 580px;
+	height: 580px;
+	overflow: auto;
+}
+
+
+#participant_list table{
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#participant_list table td{
+	padding: 5px;
+	border: 0;
+}
+
+#participant_list table td .fa-trash:before{
+	font-size: 20px !important;
+}
+
+#participant_list table thead{
+	font-size: 20px;
+    font-weight: bold;
+}
+
+#participant_list table tbody{
+	font-size: 18px;
+}
+
+#participant_list table tbody tr:hover{
+	background: #f4cc6e;
+}
+
+#participant_summary label{
+	font-weight: bold;
+}
+
+#participant_list::-webkit-scrollbar-track
+{
+	background-color: #dcdddf;
+	height: 80%;
+}
+#participant_list::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #dcdddf;
+}
+#participant_list::-webkit-scrollbar-thumb
+{
+	background-color: #dcdddf;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, #a2c6cb));
 }
 
 }
