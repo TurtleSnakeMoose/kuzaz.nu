@@ -1,11 +1,17 @@
-var wou = wou || {};
-wou.site = wou.site || {};
+var kzzn = kzzn || {};
+kzzn.site = kzzn.site || {};
 
 $(function (){
 
+	// initialize js components
+	kzzn.util.initComponents();
+
+	// inject all text content into page.
+	kzzn.txt.injectText();
+
 	var _sidePotCount = 0;
 	
-	$('#versionInfo').on('click', function(e) { wou.util.loadHardCodedData(); });
+	$('#versionInfo').on('click', function(e) { kzzn.util.loadHardCodedData(); });
 	
 	// start button : correct number if num > 25 OR num < 2. display attendant names and payment inputs.
 	$('.btn_start').on('click', function(e) {
@@ -19,10 +25,10 @@ $(function (){
 		$(payersDiv).empty();
 
 		for(i = 0 ; i < numOfAttendants ; i++){
-			payersDiv.append(wou.view.appendAttendantRow(i));	
+			payersDiv.append(kzzn.view.appendAttendantRow(i));	
 		}
 				
-		$(payersDiv).append(wou.view.appendButtonsDiv());
+		$(payersDiv).append(kzzn.view.appendButtonsDiv());
 
 		// calculate button: calculate for every memeber of the party, how much money he should transfer to who
 		$('.btn_calculate').on('click', function(e) { calcPayments(); });
@@ -31,7 +37,7 @@ $(function (){
 		$('.btn_addSidePot').on('click', function(e) { addSidePotRow(); });
 
 		// check for name validity and availability. add number to already existing name and enable buttons
-		$('.attendantName').on('blur', function () { wou.util.validate_inputs(); });
+		$('.attendantName').on('blur', function () { kzzn.util.validate_inputs(); });
 	}
 
 	// calculate the funds transaction
@@ -52,8 +58,8 @@ $(function (){
 
 			precalculatedEachShare = sum / attndCount;
 
-			var summaryContent = wou.view.buildSummaryContent(attndCount, sum, precalculatedEachShare);
-			var tableContent = wou.calc.buildTableContent(precalculatedEachShare, attndData);
+			var summaryContent = kzzn.view.buildSummaryContent(attndCount, sum, precalculatedEachShare);
+			var tableContent = kzzn.calc.buildTableContent(precalculatedEachShare, attndData);
 
 			showResult(summaryContent, tableContent);
 	}
@@ -63,7 +69,7 @@ $(function (){
 
 		var resultPanel = $('#panel_result'),
 			payersPanel = $('#panel_payers'),
-			buttonContent = wou.view.btnDiv_backAndCopy();
+			buttonContent = kzzn.view.btnDiv_backAndCopy();
 		
 		resultPanel.find('tbody').empty();
 		resultPanel.find('#div_summaryInfo').remove();
@@ -75,7 +81,7 @@ $(function (){
 		resultPanel.append(summaryContent + buttonContent);
 		resultPanel.find('tbody').append(tableContent);
 
-		$('.btn_shareViaWhatsApp').attr('href', `whatsapp://send?text=${wou.util.transactionsAsText}`);
+		$('.btn_shareViaWhatsApp').attr('href', `whatsapp://send?text=${kzzn.util.transactionsAsText}`);
 		
 		$('.btn_back').on('click', function(){
 			resultPanel.hide();
@@ -100,7 +106,7 @@ $(function (){
 			attndNames.push(atndName);
 		});
 
-		$('#panel_payers').append(wou.view.getEmptySidePotRow(++_sidePotCount, attndNames));
+		$('#panel_payers').append(kzzn.view.getEmptySidePotRow(++_sidePotCount, attndNames));
 
 		var thisSidepot = payersPanel.find('#sidepot_'+_sidePotCount+'');
 		thisSidepot.find('.sidePot_participant_multiselect').multiselect({}); // init multiselection
@@ -112,13 +118,13 @@ $(function (){
 		// display selected name on DropDown and validate sidepots
 		$('.dropdown-item').on('click', function(){
 			$(this).parents('.sidepot_whoPaid').find('button').text(this.text).addClass('valid');
-			wou.util.validate_sidePotRows();
+			kzzn.util.validate_sidePotRows();
 		});
 		
 		// validate sidepots
-		$('.multiselect-container input[type="checkbox"]').on('change', function () { wou.util.validate_sidePotRows(); });
+		$('.multiselect-container input[type="checkbox"]').on('change', function () { kzzn.util.validate_sidePotRows(); });
 
 		// remove sidepot row - enable\disabled buttons and name inputs if no more sidepots left
-		$('.removeSidePot').off('click').on('click', function () { --_sidePotCount;  wou.util.removeSidePotRow(this); });
+		$('.removeSidePot').off('click').on('click', function () { --_sidePotCount;  kzzn.util.removeSidePotRow(this); });
 	}
 })

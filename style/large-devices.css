@@ -1,12 +1,15 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px){
 	
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ SHARED }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 #page_container{
 	position: relative;
 	background: #F2C14E;
 	box-shadow: -2px 5px 20px 20px #0301004f;
     width: 600px;
-    height: 765px;
+	height: 765px;
+	padding: 10px;
     margin-top: 125px;
 }
 
@@ -15,6 +18,53 @@
 	width: 600px;
 	top: -98px;
 	left: -2px;
+}
+
+.info_box{
+    padding: 10px 20px;
+	color:#236a15;
+	line-height: 25px;
+}
+.info_box .title {
+	font-size: 25px;
+	margin: 0;
+}
+.info_box .additional_info {
+	font-size: 18px;
+	margin: 0;
+}
+
+.fa-question-circle:before {
+	font-size: x-large;
+	margin: 0 15px;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+.section{
+    height: 100%;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.divider{
+	border-bottom: 4px #f78154 ridge;
+    width: 540px;
+    margin: 0 auto;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ PARTICIPANTS }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#participant_inputs{
+	margin: 10px 19px 17px 17px;
+}
+
+#participant_inputs input{
+	text-align: center;
 }
 
 }

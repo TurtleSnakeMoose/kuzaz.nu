@@ -1,9 +1,14 @@
-var wou = wou || {};
-wou.util = wou.util || {};
+var kzzn = kzzn || {};
+kzzn.util = kzzn.util || {};
 
+kzzn.util.initComponents = function () {
+    
+    //bootstrap popover
+	$('[data-toggle="popover"]').popover();
+}
 
 // load attendant rows with hardcoded dummy data.
-wou.util.loadHardCodedData = function (){
+kzzn.util.loadHardCodedData = function (){
     var hardCodedData = [
         {Name: 'Jinji', Paid:600},
         {Name: 'Mini', Paid:450},
@@ -26,7 +31,7 @@ wou.util.loadHardCodedData = function (){
 }
 
 // validate inputs , no duplicate names / no empty inputs - enable/disable buttons respectivly
-wou.util.validate_inputs= function () {
+kzzn.util.validate_inputs= function () {
     var allNames = [],
         buttons = $('.btn_addSidePot, .btn_calculate'),
         isValid = true;
@@ -47,7 +52,7 @@ wou.util.validate_inputs= function () {
 }
 
 
-wou.util.validate_sidePotRows= function () {
+kzzn.util.validate_sidePotRows= function () {
     var sidepotRows = $('.sidepotRow'),
         buttons = $('.buttonsDiv button'),
         isValid = true;
@@ -65,7 +70,7 @@ wou.util.validate_sidePotRows= function () {
 
 
 // remove sidepot row - enable\disabled buttons and name inputs if no more sidepots left
-wou.util.removeSidePotRow = function (icon) {
+kzzn.util.removeSidePotRow = function (icon) {
     $(icon).closest('.sidepotRow').remove(); 
 
     var sidepots_count = $('.sidepotRow').length,
@@ -77,9 +82,9 @@ wou.util.removeSidePotRow = function (icon) {
 
 }
 
-wou.util.transactionsAsText = '';
+kzzn.util.transactionsAsText = '';
 
-wou.util.buildCopiableTransactionText = function (tranactions) {
+kzzn.util.buildCopiableTransactionText = function (tranactions) {
     var str_result = '',
         currentPayer = '';
     $.each(tranactions, function (index, t){
@@ -92,6 +97,6 @@ wou.util.buildCopiableTransactionText = function (tranactions) {
     });
     str_result += '---------------------------------';
 
-    wou.util.transactionsAsText = window.encodeURIComponent(str_result);
+    kzzn.util.transactionsAsText = window.encodeURIComponent(str_result);
     return str_result;
 };

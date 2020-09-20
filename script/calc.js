@@ -1,8 +1,8 @@
-var wou = wou || {};
-wou.calc = wou.calc || {};
+var kzzn = kzzn || {};
+kzzn.calc = kzzn.calc || {};
 
 // build the result string based on input data
-wou.calc.buildTableContent = function (precalculatedEachShare, attndData){
+kzzn.calc.buildTableContent = function (precalculatedEachShare, attndData){
 
     var attendantsInDebt = [],
         attendantsOverPaid = [],
@@ -45,8 +45,8 @@ wou.calc.buildTableContent = function (precalculatedEachShare, attndData){
     finalTransactions = finalTransactions.sort((a, b) => (a.From > b.From) ? 1 : -1);
 
     // generate table content and copiable transaction text for final transaction list. 
-    transactionSection = wou.view.generateTableContentForTransactions(finalTransactions);
-    transactionTextToCopy = wou.util.buildCopiableTransactionText(finalTransactions);
+    transactionSection = kzzn.view.generateTableContentForTransactions(finalTransactions);
+    transactionTextToCopy = kzzn.util.buildCopiableTransactionText(finalTransactions);
 
     $('#copiableTransaction').val(transactionTextToCopy);
     return transactionSection;

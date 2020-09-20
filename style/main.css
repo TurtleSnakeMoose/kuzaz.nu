@@ -3,11 +3,29 @@
 }
 
 body{
-	background: #277818;;
+	background: #277818;
+	text-align: start;
+	font-family: 'Assistant';
 }
 
+body.rtl{
+	direction: rtl;
+}
+
+body.ltr{
+	direction: ltr;
+}
+
+.hidden {
+	display: none;
+}
+
+.bold {
+	font-weight: bold;
+}
+/* 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
-}
+} */

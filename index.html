@@ -10,9 +10,10 @@
 	  <meta name="keywords" content="break even, התחשבונות, חובות">
 	  <meta name="author" content="Michael Roskin">
 	  
+	  <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
 	  <link rel="icon" href="assets/logo/favicon.ico">
 	  <link href="style/bootstrap/bootstrap.min.css" rel="stylesheet">
-	  <link href="style/fontawsome/fontawesome.min.css" rel="stylesheet">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	  <link href="style/main.css" rel="stylesheet">
 	  <link href="style/small-devices.css" rel="stylesheet">	
 	  <link href="style/large-devices.css" rel="stylesheet"> 
@@ -21,20 +22,51 @@
 	  <script src="script/bootstrap/bootstrap.bundle.min.js"></script>
 
 	  <script src="script/view.js"></script>
+	  <script src="script/txt.js"></script>
 	  <script src="script/calc.js"></script>
 	  <script src="script/util.js"></script>
 	  <script src="script/site.js"></script>
 	</head>
 	
-	<body>
+	<body class="ltr">
 		<div id="page_container" class="container-fluid">
+
 			<img id="logo_main" src="assets/logo/logo_kuzaznu.svg">
-			<div id="section_participants" class="row justify-content-md-center hidden">
+
+<!--------------------------------------------------------------------------------------------------------------------------------- {{ PARTICIPANT }} -->			
+
+			<div id="section_participants" class="section" data-section-for="participants">
+
+				<div class="info_box">
+					<label class="bold title"></label>
+					<i tabindex="0" class="fa fa-question-circle pointer additional_info" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
+				</div>
+
+				<div id="participant_inputs">
+					<div class="input-group">
+						<input placeholder="Name" type="text" class="form-control">
+						<input placeholder="Amount" type="number" class="form-control">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button">ADD</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="divider"></div>
+
 			</div>
-			<div id="section_payments" class="row justify-content-md-center hidden">
+
+<!--------------------------------------------------------------------------------------------------------------------------------- {{ PAYMENTS }} -->			
+
+			<div id="section_payments" class="section hidden" data-section-for="payers">
 			</div>
-			<div id="section_result" class="row justify-content-md-center hidden">
+
+<!--------------------------------------------------------------------------------------------------------------------------------- {{ RESULT }} -->
+
+			<div id="section_result" class="section hidden" data-section-for="result">
 			</div>
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------------>
 		</div>
 	</body>
 

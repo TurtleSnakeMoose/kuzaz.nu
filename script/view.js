@@ -1,8 +1,8 @@
-var wou = wou || {};
-wou.view = wou.view || {};
+var kzzn = kzzn || {};
+kzzn.view = kzzn.view || {};
 
 // returns HTML for "Calculate" & "AddSidePot" buttons
-wou.view.appendButtonsDiv = function(){
+kzzn.view.appendButtonsDiv = function(){
     return `<div class="buttonsDiv" style="text-align: center;">
                 <button class="btn btn-primary btn_addSidePot" disabled >Add side pot</button>
                 <button class="btn btn-primary btn_calculate" disabled >Calculate</button>
@@ -10,7 +10,7 @@ wou.view.appendButtonsDiv = function(){
 }
 
 // returns HTML for "back", "copy" and "share via whatsApp" buttons
-wou.view.btnDiv_backAndCopy = function(){
+kzzn.view.btnDiv_backAndCopy = function(){
     return `<div class='div_actionsBtns' style="text-align: center;">
                 <button class="btn btn-primary btn_back">Back</button>
                 <button class="btn btn-primary btn_copyToClipboard">CopyText</button>
@@ -19,7 +19,7 @@ wou.view.btnDiv_backAndCopy = function(){
 }
 
 // return HTML for empty attendant row
-wou.view.appendAttendantRow = function(i){
+kzzn.view.appendAttendantRow = function(i){
     return `<div class="form-group row attendantRow">
                 <label class="col-1">${i+1}. </label>
                 <div class="col-5">
@@ -33,7 +33,7 @@ wou.view.appendAttendantRow = function(i){
 }
 
 // build the basic summary string based on input data
-wou.view.buildSummaryContent = function (attndCount, sum, precalculatedEachShare){
+kzzn.view.buildSummaryContent = function (attndCount, sum, precalculatedEachShare){
     return `<div id="div_summaryInfo">
             <span>Main pot has <strong>${sum}</strong> collected by all <strong>${attndCount} parties</strong>.</span><br>
             <span>Split evenly between everyone: <strong>${precalculatedEachShare.toFixed(1)}</strong>.</span>
@@ -42,7 +42,7 @@ wou.view.buildSummaryContent = function (attndCount, sum, precalculatedEachShare
 
 
 // build empty sidepot row
-wou.view.getEmptySidePotRow = function (sidePotRowCount, allNames){
+kzzn.view.getEmptySidePotRow = function (sidePotRowCount, allNames){
     var ddItems = '',
         multiSelect_Items = '';
 
@@ -79,7 +79,7 @@ wou.view.getEmptySidePotRow = function (sidePotRowCount, allNames){
             </div>`;
 }
 
-wou.view.generateTableContentForTransactions = function (transactions) {
+kzzn.view.generateTableContentForTransactions = function (transactions) {
     tblContent = '';
     $.each(transactions, function(index, t){
         tblContent += `<tr><td>${t.From}</td><td>${t.To}</td><td>${t.Total}</td></tr>`;
