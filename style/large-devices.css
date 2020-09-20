@@ -84,9 +84,10 @@
 }
 
 #participant_list{
-	max-height: 580px;
-	height: 580px;
+	max-height: 575px;
+	height: 575px;
 	overflow: auto;
+	margin-bottom:0;
 }
 
 
@@ -118,8 +119,21 @@
 	background: #f4cc6e;
 }
 
+#participant_summary{
+	height: 50px;
+    margin-top: 8px;
+}
+
 #participant_summary label{
 	font-weight: bold;
+}
+
+#participant_summary .div_lbl{
+	float: left;
+}
+
+#participant_summary .div_btn{
+	float: right;
 }
 
 #participant_list::-webkit-scrollbar-track

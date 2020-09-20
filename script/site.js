@@ -41,6 +41,11 @@ $(function (){
 		kzzn.util.participantList_summarize(table);
 	}
 
+	// hide current section and show payments section.
+	kzzn.site.navigateToSection_payments = function(button){
+		$(button).closest('.section').addClass('hidden');
+		alert('cykaBlyat');
+	}
 
 	var _sidePotCount = 0;
 	
