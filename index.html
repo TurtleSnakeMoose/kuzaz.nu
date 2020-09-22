@@ -25,6 +25,9 @@
 	  <script src="script/txt.js"></script>
 	  <script src="script/calc.js"></script>
 	  <script src="script/util.js"></script>
+	  <script src="script/participants.js"></script>
+	  <script src="script/payments.js"></script>
+	  <script src="script/result.js"></script>
 	  <script src="script/site.js"></script>
 	</head>
 	
@@ -46,7 +49,7 @@
 					<div class="input-group">
 						<input id="input_name" placeholder="Name" type="text" maxlength="20" class="form-control">
 						<input id="input_count" placeholder="Count" type="number" value="1" min="1" max="30" class="form-control">
-						<div class="input-group-append btn_add" onclick="kzzn.site.addParticipant(this)">
+						<div class="input-group-append btn_add" onclick="kzzn.participants.addParticipant(this)">
 							<button class="btn btn-outline-secondary" type="button"><i tabindex="0" class="fa fa-plus"></i></button>
 						</div>
 					</div>
@@ -69,7 +72,7 @@
 						<label></label>
 					</div>
 					<div class="div_btn">
-						<button type="button" class="btn btn-light" onclick="kzzn.site.navigateToSection_payments(this)">Payments</button>
+						<button type="button" class="btn btn-light" onclick="kzzn.site.navigateToSection(this,'payments')">Payments</button>
 					</div>
 				</div>
 
@@ -77,7 +80,52 @@
 
 <!--------------------------------------------------------------------------------------------------------------------------------- {{ PAYMENTS }} -->			
 
-			<div id="section_payments" class="section hidden" data-section-for="payers">
+			<div id="section_payments" class="section hidden" data-section-for="payments">
+				<div class="info_box">
+					<label class="bold title"></label>
+					<i tabindex="0" class="fa fa-question-circle pointer additional_info" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
+				</div>
+
+				<div id="payments_inputs">
+
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<select id="inputState" class="form-control">
+							  <option selected>Select</option>
+							  <option>mark</option>
+							  <option>mike</option>
+							  <option>mini</option>
+							  <option>igor</option>
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+						  <input type="text" class="form-control" id="inputPassword4" placeholder="Password">
+						</div>
+					</div>
+					
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<div class="form-check">
+							  <input class="form-check-input" type="checkbox" id="gridCheck">
+							  <label class="form-check-label" for="gridCheck">Side pot</label>
+							</div>
+						</div>
+						<div class="form-group col-md-8">
+							<select id="inputState" class="form-control">
+							  <option selected>Select</option>
+							  <option>mark</option>
+							  <option>mike</option>
+							  <option>mini</option>
+							  <option>igor</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="payments_list" class="table">
+					
+				</div>
 			</div>
 
 <!--------------------------------------------------------------------------------------------------------------------------------- {{ RESULT }} -->
