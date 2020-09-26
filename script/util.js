@@ -1,6 +1,15 @@
 var kzzn = kzzn || {};
 kzzn.util = kzzn.util || {};
 
+// load html contant from paymentsModal.html into modal <div> and init onShow + onHide events.
+kzzn.util.load_modalPayments = function() {
+    $('#modal_payments').load("paymentsModal.html");
+    
+    $('#modal_payments').on('shown.bs.modal', function (e) { kzzn.payments.modal_loadParticipantData(e); })
+    
+    $('#modal_payments').on('hide.bs.modal', function (e) { kzzn.payments.modal_updateParticipantData(e); })
+}
+
 /***************************************************************************************************************************************{ PARTICIPANTS }******/
 // initialize various components.
 kzzn.util.initComponents = function () {
@@ -44,8 +53,18 @@ kzzn.util.participantList_addRow = function (tbody, name, count){
     tbody.append(`<tr>
                         <td>${currentRowCount+1}</td>
                         <td col-for='name'>${name}</td>
-                        <td class='p_count'>${count || 1}</td>
-                        <td><i class="fa fa-trash pointer" onclick="kzzn.participants.removeParticipant(this)"></i></td>
+                        <td class='p_count'>
+                            <span>${count || 1}</span>
+                            &nbsp;
+                            <i class="fa fa-plus-circle" onclick="kzzn.participants.alterParticipantCount(this, 'add')"></i>
+                            &nbsp;
+                            <i class="fa fa-minus-circle" onclick="kzzn.participants.alterParticipantCount(this, 'remove')"></i>
+                        </td>
+                        <td>
+                            <i class="fa fa-comments-dollar" onclick="kzzn.payments.editParticipantPayments(this)" title='Edit payments'></i>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-trash" onclick="kzzn.participants.removeParticipant(this)" title='Remove participant'></i>
+                        </td>
                     </tr>`);
 }
 
@@ -78,6 +97,22 @@ kzzn.util.participantList_summarize = function (table){
         });
 
     lbl_participantSummary.text(payerCount>0 ? `${payerCount} payers for ${participantCount} participants.` : '');
+}
+
+// remove participant table row.
+kzzn.util.participantList_removeRow = function (row, table){
+    
+    row.remove(); //remove row
+
+    let remainingRows = $(table).find('tbody tr');
+
+    if(remainingRows.length === 0)
+        $(table).addClass('hidden');
+
+    $.each(remainingRows, function(index, item){
+        $(item).children()[0].textContent = index+1
+    });
+
 }
 
 /*********************************************************************************************************************************************{ PAYMENTS }******/

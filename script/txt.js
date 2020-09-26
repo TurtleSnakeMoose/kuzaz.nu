@@ -4,7 +4,6 @@ kzzn.txt = kzzn.txt || {};
 // quality of life, gather all page text content here instead of looking for it at the page.
 var content = {
     participants:{
-        title:'Add participants',
         additional_info: `Name all the participants that should be included in the calculation. <br />
                             <strong>Incases where a participant is paying for several participants:</strong> 
                             <br /> Specify the count (including himself) and don't add these people to the list.
@@ -12,10 +11,9 @@ var content = {
     },
 
     payments:{
-        title:'Add Expenses',
-        additional_info: `  Expenses are split into 2 catagories: "General pot" and "Side pot".
-                            <br /><strong>General pot:</strong> 
-                            <br /> There's only one General pot and it should only include expenses that are shared equally between ALL participants.
+        additional_info: `  Expenses are split into 2 catagories: "Main pot" and "Side pot".
+                            <br /><strong>Main pot:</strong> 
+                            <br /> There's only one main pot and it should only include expenses that are shared equally between ALL participants.
                             <br /> e.g.: <i>vanue rent fee, food, snacks, soft drinks, shared service such as catering or strippers, etc...</i>
                             <br />
                             <strong>Side pot:</strong> 
@@ -27,30 +25,25 @@ var content = {
     },
 
     result:{
-        title:'cyka',
         additional_info: 'blyat'
     }
 }
 
 // inject text content into page by sections
 kzzn.txt.injectText = function () {
-    var sections = $('.section');
+    var info_points = $('.additional_info');
 
-    $.each(sections, function (index, item){
-        let section = $(this),
-            sectionFor = section.data('sectionFor'),
-            title = section.find('.title'),
-            additional_info = section.find('.additional_info');
+    $.each(info_points, function (index, item){
+        let info_point = $(this),
+            infoFor = info_point.data('for');
 
-        switch(sectionFor){
-            case 'participants':
-                title.text(content.participants.title);
-                additional_info.attr('data-content', content.participants.additional_info);
+        switch(infoFor){
+            case 'section_participants':
+                info_point.attr('data-content', content.participants.additional_info);
             break;
 
-            case 'payments':
-                title.text(content.payments.title);
-                additional_info.attr('data-content', content.payments.additional_info);
+            case 'modal_payments':
+                info_point.attr('data-content', content.payments.additional_info);
             break;
         }
     });

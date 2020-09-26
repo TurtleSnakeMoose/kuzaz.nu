@@ -3,14 +3,19 @@ kzzn.site = kzzn.site || {};
 
 $(function (){
 
-	// initialize js components
-	kzzn.util.initComponents();
+	// load html contant from paymentsModal.html into modal <div> and init onShow + onHide events.
+	kzzn.util.load_modalPayments();
 
 	// attach key-press events to various elements
 	kzzn.util.attachKeyEvents();
-
-	// inject all text content into page.
-	kzzn.txt.injectText();
+	
+	// set minor delay to allow content to be loaded from file.
+	setTimeout(function(){
+		// initialize js components
+		kzzn.util.initComponents();
+		// inject all text content into page.
+		kzzn.txt.injectText();
+	}, 200);
 
 	// hide all sections and show destination section.
 	kzzn.site.navigateToSection = function(button, destination){

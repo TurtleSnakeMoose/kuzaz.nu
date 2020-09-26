@@ -13,7 +13,8 @@
 	  <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
 	  <link rel="icon" href="assets/logo/favicon.ico">
 	  <link href="style/bootstrap/bootstrap.min.css" rel="stylesheet">
-	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <link href="style/fontawsome/fontawesome.css" rel="stylesheet">
+	  <link href="style/fontawsome/solid.css" rel="stylesheet">
 	  <link href="style/main.css" rel="stylesheet">
 	  <link href="style/small-devices.css" rel="stylesheet">	
 	  <link href="style/large-devices.css" rel="stylesheet"> 
@@ -21,7 +22,6 @@
 	  <script src="script/jquery/jquery-3.5.1.min.js"></script>
 	  <script src="script/bootstrap/bootstrap.bundle.min.js"></script>
 
-	  <script src="script/view.js"></script>
 	  <script src="script/txt.js"></script>
 	  <script src="script/calc.js"></script>
 	  <script src="script/util.js"></script>
@@ -36,21 +36,21 @@
 
 			<img id="logo_main" src="assets/logo/logo_kuzaznu.svg">
 
-<!--------------------------------------------------------------------------------------------------------------------------------- {{ PARTICIPANT }} -->			
+<!--------------------------------------------------------------------------------------------------------------------------------- {{ PARTICIPANT }} --->			
 
 			<div id="section_participants" class="section" data-section-for="participants">
 
 				<div class="info_box">
-					<label class="bold title"></label>
-					<i tabindex="0" class="fa fa-question-circle pointer additional_info" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
+					<label class="bold title">Add participants</label>
+					<i tabindex="0" class="fas fa-question-circle pointer additional_info" data-for="section_participants" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
 				</div>
 
 				<div id="participant_inputs">
 					<div class="input-group">
 						<input id="input_name" placeholder="Name" type="text" maxlength="20" class="form-control">
-						<input id="input_count" placeholder="Count" type="number" value="1" min="1" max="30" class="form-control">
+						<input id="input_count" placeholder="Count" type="number" min="1" max="30" class="form-control">
 						<div class="input-group-append btn_add" onclick="kzzn.participants.addParticipant(this)">
-							<button class="btn btn-outline-secondary" type="button"><i tabindex="0" class="fa fa-plus"></i></button>
+							<button class="btn btn-outline-secondary" type="button"><i tabindex="0" class="fas fa-plus"></i></button>
 						</div>
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 					<table class="hidden">
 						<thead>
 							<tr>
-								<td>#</td><td>Name</td><td>Count</td><td>Remove</td>
+								<td>#</td><td>Name</td><td>Count</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -71,70 +71,22 @@
 					<div class="div_lbl">
 						<label></label>
 					</div>
-					<div class="div_btn">
-						<button type="button" class="btn btn-light" onclick="kzzn.site.navigateToSection(this,'payments')">Payments</button>
-					</div>
 				</div>
 
 			</div>
 
-<!--------------------------------------------------------------------------------------------------------------------------------- {{ PAYMENTS }} -->			
+<!---------------------------------------------------------------------------------------------------------------{{ PARTICIPANT PAYMENTS MODAL }}-------->
 
-			<div id="section_payments" class="section hidden" data-section-for="payments">
-				<div class="info_box">
-					<label class="bold title"></label>
-					<i tabindex="0" class="fa fa-question-circle pointer additional_info" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
-				</div>
+			<div class="modal fade" id="modal_payments" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="paymentsModal" aria-hidden="true"></div>
 
-				<div id="payments_inputs">
-
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<select id="inputState" class="form-control">
-							  <option selected>Select</option>
-							  <option>mark</option>
-							  <option>mike</option>
-							  <option>mini</option>
-							  <option>igor</option>
-							</select>
-						</div>
-						<div class="form-group col-md-6">
-						  <input type="text" class="form-control" id="inputPassword4" placeholder="Password">
-						</div>
-					</div>
-					
-					<div class="form-row">
-						<div class="form-group col-md-4">
-							<div class="form-check">
-							  <input class="form-check-input" type="checkbox" id="gridCheck">
-							  <label class="form-check-label" for="gridCheck">Side pot</label>
-							</div>
-						</div>
-						<div class="form-group col-md-8">
-							<select id="inputState" class="form-control">
-							  <option selected>Select</option>
-							  <option>mark</option>
-							  <option>mike</option>
-							  <option>mini</option>
-							  <option>igor</option>
-							</select>
-						</div>
-					</div>
-
-				</div>
-
-				<div id="payments_list" class="table">
-					
-				</div>
-			</div>
-
-<!--------------------------------------------------------------------------------------------------------------------------------- {{ RESULT }} -->
+<!--------------------------------------------------------------------------------------------------------------------------------- {{ RESULT }} -------->
 
 			<div id="section_result" class="section hidden" data-section-for="result">
 			</div>
 
 <!------------------------------------------------------------------------------------------------------------------------------------------------------>
 		</div>
+
 	</body>
 
 </html>
