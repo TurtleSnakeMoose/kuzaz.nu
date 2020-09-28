@@ -4,7 +4,7 @@ kzzn.util = kzzn.util || {};
 // load html contant from paymentsModal.html into modal <div> and init onShow + onHide events.
 kzzn.util.load_modalPayments = function() {
     $('#modal_payments').load("paymentsModal.html");
-    
+
     $('#modal_payments').on('shown.bs.modal', function (e) { kzzn.payments.modal_loadParticipantData(e); })
     
     $('#modal_payments').on('hide.bs.modal', function (e) { kzzn.payments.modal_updateParticipantData(e); })
@@ -14,7 +14,13 @@ kzzn.util.load_modalPayments = function() {
 // initialize various components.
 kzzn.util.initComponents = function () {
     //bootstrap popover
-	$('[data-toggle="popover"]').popover();
+    $('[data-toggle="popover"]').popover();
+    
+    //bsMultiSelect
+    $("#multiselect_participant").bsMultiSelect({
+        placeholder: 'Select participants'
+    });
+    $('.dashboardcode-bsmultiselect').addClass('col-md-6');
 }
 
 // attach keypress events to various elements.
@@ -56,14 +62,14 @@ kzzn.util.participantList_addRow = function (tbody, name, count){
                         <td class='p_count'>
                             <span>${count || 1}</span>
                             &nbsp;
-                            <i class="fa fa-plus-circle" onclick="kzzn.participants.alterParticipantCount(this, 'add')"></i>
+                            <i class="fas fa-plus-circle pointer" onclick="kzzn.participants.alterParticipantCount(this, 'add')"></i>
                             &nbsp;
-                            <i class="fa fa-minus-circle" onclick="kzzn.participants.alterParticipantCount(this, 'remove')"></i>
+                            <i class="fas fa-minus-circle pointer" onclick="kzzn.participants.alterParticipantCount(this, 'remove')"></i>
                         </td>
                         <td>
-                            <i class="fa fa-comments-dollar" onclick="kzzn.payments.editParticipantPayments(this)" title='Edit payments'></i>
+                            <i class="fas fa-comment-dollar pointer" onclick="kzzn.payments.editParticipantPayments(this)" title='Edit payments'></i>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <i class="fa fa-trash" onclick="kzzn.participants.removeParticipant(this)" title='Remove participant'></i>
+                            <i class="fas fa-trash pointer" onclick="kzzn.participants.removeParticipant(this)" title='Remove participant'></i>
                         </td>
                     </tr>`);
 }
@@ -117,9 +123,44 @@ kzzn.util.participantList_removeRow = function (row, table){
 
 /*********************************************************************************************************************************************{ PAYMENTS }******/
 
+// validate sidepot inputs.
+kzzn.util.sidepotList_validateRow = function (sidepot_inputs){
+    return sidepot_inputs.amount <= 0 || sidepot_inputs.participants.length < 1 ? false : true;
+}
 
+// add table row for participant sidepot list.
+kzzn.util.sidepotList_addRow = function (tbody, data){
 
+    let currentRowCount = tbody.find('tr').length,
+        str_participants = data.participants.join(' | ');
 
+    tbody.append(`<tr>
+                        <td>
+                            <span data-rowCount='${currentRowCount+1}'>${currentRowCount+1}</span>.
+                        </td>
+                        <td>
+                            <span class='sp_amount' data-amount='${data.amount}'>${data.amount}</span>
+                        </td>
+                        <td>
+                            <span class='sp_participants' data-arr-participants='${data.participants}'>${str_participants}</span>
+                        </td>
+                        <td>
+                            <i class="fas fa-trash pointer" onclick="kzzn.payments.removeFromSidePotTable(this)" title='Remove sidepot'></i>
+                        </td>
+                    </tr>`);
+}
+
+// remove sidepot table row.
+kzzn.util.sidePotList_removeRow = function (row, table){
+    row.remove(); //remove row
+
+    let remainingRows = $(table).find('tbody tr');
+
+    $.each(remainingRows, function(index, item){
+        $(item).find('span[data-rowCount]').text(index+1);
+    });
+
+}
 
 
 /************************************************************************************************************************************************{ RESULT }******/

@@ -10,18 +10,34 @@
 
 			<div class="form-row div_mainpot">
 				<span id="payment_mainPot_span" class="col-md-4">Main pot contribution:</span>
-				<input id="payment_mainPot_amount" type="number" class="form-control col-md-3" value="0">
+				<input id="payment_mainPot_amount" type="number" class="form-control col-md-3" placeholder="0">
 			</div>
 
-			<div class="form-row div_sidepot">
-				<span id="payment_sidePot_cost_span" class="col-md-3">Sidepot cost:</span>
-				<input id="payment_sidepot_amount" class="form-control col-md-3" type="number" value="0">
-				<span id="payment_sidePot_for_span" class="col-md-1">for</span>
-				<select id="inputState" class="form-control col-md-5">
-					<option selected>Participants</option>
-				</select>
+			<div class="modal_divider"></div>
+
+			<div class="div_sidepot">
+				<div class="form-row">
+					<span id="payment_sidePot_cost_span" class="col-md-3">Sidepot cost:</span>
+					<input id="payment_sidepot_amount" class="form-control col-md-2" type="number" placeholder="0">
+					<span id="payment_sidePot_for_span" class="col-md-1">for</span>
+					<select name="states" id="multiselect_participant" multiple="multiple" style="display: none;"></select>  <!--is set to col-md-6 at initComponents()-->
+				</div>
+	
+				<div class="form-row div_addToSidePot">
+					<button type="button" class="btn btn-primary" onclick="kzzn.payments.addToSidePotTable(this)">Add to sidepots</button>
+				</div>
 			</div>
-			
+
+
+			<div class="modal_divider"></div>
+
+			<div id="sidepot_list" class="table">
+				<table>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
 		</div>
 
 		<div class="modal-footer">
