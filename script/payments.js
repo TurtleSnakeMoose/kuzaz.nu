@@ -20,7 +20,7 @@ kzzn.payments.editParticipantPayments = function(button) {
     participant_multiSelect.bsMultiSelect("UpdateData");
 
     $('#modal_payments').modal({
-        keyboard: true,
+        keyboard: false,
         focus: true,
         backdrop: 'static'
     })

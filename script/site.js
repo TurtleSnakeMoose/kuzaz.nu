@@ -4,7 +4,7 @@ kzzn.site = kzzn.site || {};
 $(function (){
 
 	// load html contant from paymentsModal.html into modal <div> and init onShow + onHide events.
-	kzzn.util.load_modalPayments();
+	kzzn.util.load_modals();
 
 	// attach key-press events to various elements
 	kzzn.util.attachKeyEvents();

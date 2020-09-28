@@ -28,6 +28,7 @@
 	  <script src="script/calc.js"></script>
 	  <script src="script/util.js"></script>
 	  <script src="script/data.js"></script>
+	  <script src="script/summary.js"></script>
 	  <script src="script/participants.js"></script>
 	  <script src="script/payments.js"></script>
 	  <script src="script/result.js"></script>
@@ -74,6 +75,9 @@
 					<div class="div_lbl">
 						<label></label>
 					</div>
+					<div class="div_buttons">
+						<button type="button" class="btn btn-primary" onclick="kzzn.summary.openSummaryModal()">Summary</button>
+					</div>
 				</div>
 
 			</div>
@@ -81,6 +85,10 @@
 <!---------------------------------------------------------------------------------------------------------------{{ PARTICIPANT PAYMENTS MODAL }}-------->
 
 			<div class="modal fade" id="modal_payments" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="paymentsModal" aria-hidden="true"></div>
+
+<!---------------------------------------------------------------------------------------------------------------{{ PARTICIPANT PAYMENTS MODAL }}-------->
+
+			<div class="modal fade" id="modal_participant_summary" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="summaryModal" aria-hidden="true"></div>			
 
 <!--------------------------------------------------------------------------------------------------------------------------------- {{ RESULT }} -------->
 

@@ -56,6 +56,11 @@
     margin: 0 auto;
 }
 
+.modal_divider{
+	width: 100%;
+    border-bottom: 4px groove #5eb5cf8a;
+}
+
 ::-webkit-scrollbar-track
 {
 	background-color: #dcdddf;
@@ -137,14 +142,16 @@
 
 #participant_summary{
 	height: 50px;
-    margin-top: 8px;
+	margin-top: 8px;
+	display: flex;
+    justify-content: space-between;
 }
 
 #participant_summary label{
 	font-weight: bold;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ PAYMENTS MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 #modal_payments input[type=number]::-webkit-inner-spin-button, 
 #modal_payments input[type=number]::-webkit-outer-spin-button { 
@@ -152,28 +159,25 @@
   margin: 0; 
 }
 
-#modal_payments .modal_divider{
-	width: 100%;
-    border-bottom: 4px groove #5eb5cf8a;
-}
-
 #modal_payments #modal_title{
 	font-weight: bold;
 }
-
 #modal_payments .modal-content{
 	background-color: #F2C14E;
 }
-
 #modal_payments .modal-header{
 	padding: 10px;
 	border: 0;
 }
-
 #modal_payments .modal-body{
 	font-weight: bold;
 	padding: 0 10px;
 }
+#modal_payments .modal-footer{
+	border: 0;
+	padding: 10px
+}
+
 #modal_payments .modal-body .form-row{
 	margin:10px 0;
 }
@@ -200,10 +204,7 @@
 	padding: 0px 10px;
 }
 
-#modal_payments .modal-footer{
-	border: 0;
-	padding: 10px
-}
+
 #modal_payments .btn-primary{
 	background-color: #5EB5CF;
     border-color: #5EB5CF;
@@ -264,6 +265,27 @@
 
 #modal_payments table tbody tr:hover{
 	background: #f4cc6e;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ SUMMARY MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#modal_participant_summary #modal_title{
+	font-weight: bold;
+}
+#modal_participant_summary .modal-content{
+	background-color: #F2C14E;
+}
+#modal_participant_summary .modal-header{
+	padding: 10px;
+	border: 0;
+}
+#modal_participant_summary .modal-body{
+	font-weight: bold;
+	padding: 0 10px;
+}
+#modal_participant_summary .modal-footer{
+	border: 0;
+	padding: 10px
 }
 
 }

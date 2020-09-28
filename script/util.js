@@ -1,13 +1,18 @@
 var kzzn = kzzn || {};
 kzzn.util = kzzn.util || {};
 
-// load html contant from paymentsModal.html into modal <div> and init onShow + onHide events.
-kzzn.util.load_modalPayments = function() {
-    $('#modal_payments').load("paymentsModal.html");
+// load html contant modals into modal <div> and init onShow + onHide events.
+kzzn.util.load_modals = function() {
+    let modal_payments = $('#modal_payments'),
+        modal_summary = $('#modal_participant_summary');
 
-    $('#modal_payments').on('shown.bs.modal', function (e) { kzzn.payments.modal_loadParticipantData(e); })
-    
-    $('#modal_payments').on('hide.bs.modal', function (e) { kzzn.payments.modal_updateParticipantData(e); })
+    modal_payments.load("modal_payments.html");
+    modal_payments.on('shown.bs.modal', function (e) { kzzn.payments.modal_loadParticipantData(e); })
+    modal_payments.on('hide.bs.modal', function (e) { kzzn.payments.modal_updateParticipantData(e); })
+
+    modal_summary.load("modal_summary.html");
+    modal_summary.on('shown.bs.modal', function (e) { kzzn.summary.modal_summary_onshown(e); })
+    modal_summary.on('hide.bs.modal', function (e) { kzzn.summary.modal_summary_onClose(e); })
 }
 
 /***************************************************************************************************************************************{ PARTICIPANTS }******/
@@ -162,5 +167,4 @@ kzzn.util.sidePotList_removeRow = function (row, table){
 
 }
 
-
-/************************************************************************************************************************************************{ RESULT }******/
+/************************************************************************************************************************************************{ SUMMARY }******/
