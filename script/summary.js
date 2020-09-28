@@ -20,9 +20,9 @@ kzzn.summary.modal_summary_onshown = function (e) {
         sidepot_contributors = [];
 
     $.each(data, function(index, payer){
-        participant_count++;
-        payer_count += payer.count;
-        
+        payer_count++;
+        participant_count += payer.count;
+
         if(payer.mainpot > 0){
             mainpot_sum += payer.mainpot;
             mainpot_contributors.push(payer);
@@ -32,7 +32,7 @@ kzzn.summary.modal_summary_onshown = function (e) {
             sidepot_contributors.push(payer);
     });
 
-    display_mainpot_info(e.target, participant_count, payer_count, mainpot_contributors, mainpot_sum);
+    display_mainpot_info(e.target, participant_count, mainpot_contributors, mainpot_sum);
     display_sidepots_info(e.target, sidepot_contributors);
 }
 
@@ -41,7 +41,7 @@ kzzn.summary.modal_summary_onClose = function (e) {
     //
 }
 
-function display_mainpot_info(modal, participant_count, payer_count, mainpot_contributors, mainpot_sum){
+function display_mainpot_info(modal, participant_count, mainpot_contributors, mainpot_sum){
     let div_mainpot_summary = $(modal).find('#summary_mainpot'),
         ul_mainpot_contrib = div_mainpot_summary.find('#ul_mainpot_contrib'),
         span_mainpot_calc_summary = div_mainpot_summary.find('#mainpot_calc_summary'),
@@ -59,7 +59,7 @@ function display_mainpot_info(modal, participant_count, payer_count, mainpot_con
         }
     });
 
-    span_mainpot_calc_summary.text(`${mainpot_contributors.length} participants have contributed a total of ${mainpot_sum}. </br> Split evenly between ${participant_count} participants is ${amount_per_participant}. </br>`);
+    span_mainpot_calc_summary.text(`${mainpot_contributors.length} participants have contributed a total of ${mainpot_sum}. \n Split evenly between ${participant_count} participants is ${amount_per_participant}.`);
     
     $.each(multipayer, function(i, payer){
         ul_mainpot_multipayer.append(`<li>${payer.name}: ${payer.amount}.</li>`);
