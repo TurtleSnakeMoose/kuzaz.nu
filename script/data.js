@@ -5,18 +5,16 @@ kzzn.data = kzzn.data || {};
 kzzn.data._hardCodedData = [
     {
         name: 'a', // change later to some other name
-        data: [{ Name: 'Jinji', Count: 1 },
-                { Name: 'Mini', Count: 1 },
-                { Name: 'Igor', Count: 1 },
-                { Name: 'Bomj', Count: 1 },
-                { Name: 'Eli', Count: 1 },
-                { Name: 'Slava', Count: 1 },
-                { Name: 'Blecher', Count: 1 },
-                { Name: 'Roi', Count: 1 },
-                { Name: 'Fishkin', Count: 1 },
-                { Name: 'Yan', Count: 1 },
-                { Name: 'Yafim', Count: 1 },
-                { Name: 'Vova', Count: 1 }]
+        data: [{ name: 'Jinji', count: 2, mainpot: 1158, sidepots: [] },
+                { name: 'Mini', count: 1, mainpot: 100, sidepots: [{amount: 400, participants: ['Jinji','Igor','Yan','Bomj','Mini','Slava']}, {amount: 200, participants: ['Blecher','Fishkin','Slava','Mini']}] },
+                { name: 'Igor', count: 2, mainpot: 424, sidepots: [] },
+                { name: 'Yan', count: 2, mainpot: 50, sidepots: [] },
+                { name: 'Bomj', count: 2, mainpot: 0, sidepots: [] },
+                { name: 'Slava', count: 2, mainpot: 200, sidepots: [{amount: 400, participants: ['Jinji','Mini','Slava','Blecher']}] },
+                { name: 'Blecher', count: 1, mainpot: 0, sidepots: [] },
+                { name: 'Roi', count: 2, mainpot: 0, sidepots: [] },
+                { name: 'Fishkin', count: 2, mainpot: 0, sidepots: [] }
+            ]
     },
     {
         name: 'base',
@@ -32,7 +30,7 @@ kzzn.data.Participant = function (obj) {
     this.name = obj.Name || '';
     this.count = obj.Count || 1;
     this.mainpot = obj.MainPot || 0;
-    this.sidepots = [];
+    this.sidepots = obj.SidePots || [];
 }
 
 kzzn.data.SidePot = function (obj) {
@@ -95,8 +93,8 @@ kzzn.data.loadHardCodedDataByName = function (tbody, groupName) {
     var hardcoded_list = kzzn.data._hardCodedData.filter(x => x.name === groupName);
 
     $.each(hardcoded_list[0].data, function (i, item){
-        kzzn.util.participantList_addRow(tbody, item.Name, item.Count);
-        kzzn.data.add_participant({Name: item.Name, Count: item.Count});
+        kzzn.util.participantList_addRow(tbody, item.name, item.count);
+        kzzn.data.add_participant({Name: item.name, Count: item.count, MainPot: item.mainpot, SidePots: item.sidepots});
     });
 }
 
