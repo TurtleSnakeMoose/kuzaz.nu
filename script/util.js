@@ -15,7 +15,7 @@ kzzn.util.load_modals = function() {
     modal_summary.on('hide.bs.modal', function (e) { kzzn.summary.modal_summary_onClose(e); })
 }
 
-/***************************************************************************************************************************************{ PARTICIPANTS }******/
+/***************************************************************************{ PARTICIPANTS }******/
 // initialize various components.
 kzzn.util.initComponents = function () {
     //bootstrap popover
@@ -126,7 +126,7 @@ kzzn.util.participantList_removeRow = function (row, table){
 
 }
 
-/*********************************************************************************************************************************************{ PAYMENTS }******/
+/*******************************************************************************{ PAYMENTS }******/
 
 // validate sidepot inputs.
 kzzn.util.sidepotList_validateRow = function (sidepot_inputs){
@@ -167,4 +167,13 @@ kzzn.util.sidePotList_removeRow = function (row, table){
 
 }
 
-/************************************************************************************************************************************************{ SUMMARY }******/
+/*********************************************************************************{ SUMMARY }******/
+
+kzzn.util.buildSummaryTextContent = function (data){
+    let mainpot_payers = [],
+        sidepot_payers = [];
+
+    $.each(data, function (i, payer) { 
+        debugger; 
+    });
+}

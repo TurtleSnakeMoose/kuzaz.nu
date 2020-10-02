@@ -61,6 +61,11 @@
     border-bottom: 4px groove #5eb5cf8a;
 }
 
+.btn-primary{
+	background-color: #5EB5CF;
+    border-color: #5EB5CF;
+}
+
 ::-webkit-scrollbar-track
 {
 	background-color: #dcdddf;
@@ -204,12 +209,6 @@
 	padding: 0px 10px;
 }
 
-
-#modal_payments .btn-primary{
-	background-color: #5EB5CF;
-    border-color: #5EB5CF;
-}
-
 #modal_payments .dashboardcode-bsmultiselect .badge{
 	margin-right: 5px;
 	margin-top: 2px;
@@ -269,23 +268,55 @@
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ SUMMARY MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#modal_participant_summary #modal_title{
-	font-weight: bold;
-}
 #modal_participant_summary .modal-content{
 	background-color: #F2C14E;
 }
-#modal_participant_summary .modal-header{
-	padding: 10px;
-	border: 0;
-}
 #modal_participant_summary .modal-body{
-	font-weight: bold;
 	padding: 0 10px;
+}
+#modal_participant_summary .modal-body .span_contribs{
+	font-weight: bold;
+	text-decoration: underline;
+}
+#modal_participant_summary .modal-body #mainpot_calc_summary {
+	margin-bottom: 10px;
+}
+#modal_participant_summary .modal-body #ul_sidepots_contrib li{
+	margin-bottom: 10px;
+}
+#modal_participant_summary .modal-body h5{
+	text-align: center;
+	font-weight: bold;
+	margin-top: 12px;
+}
+#modal_participant_summary .modal-body ul{
+	list-style: none;
+}
+#modal_participant_summary .modal-body .div_pot_info{
+	background: #f4cc6e;
+	padding: 5px 15px;
+	max-height: 35vh;
+	overflow-y: auto;
+	margin: 10px 0;
+	border-radius: 10px;
 }
 #modal_participant_summary .modal-footer{
 	border: 0;
 	padding: 10px
 }
-
+#modal_participant_summary .modal-footer{
+	border: 0;
+	padding: 10px
+}
+#modal_participant_summary .modal-footer .fa-whatsapp:before{
+	font-size: 36px;
+	margin: 0 5px;
+}
+#modal_participant_summary .modal-footer .fa-copy:before{
+	font-size: 27px;
+	margin: 0 5px;
+}
+#modal_participant_summary .modal-footer #div_icons{
+	margin: 0 15px;
+}
 }

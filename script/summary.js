@@ -41,55 +41,82 @@ kzzn.summary.modal_summary_onshown = function (e) {
     }
 
     display_mainpot_info(modal, summaryData);
-    display_sidepots_info(modal, summaryData);
+    display_sidepots_info(modal, summaryData.sidepot_contribs);
 }
 
 // triggers on modal close for summary modal
 kzzn.summary.modal_summary_onClose = function (e) {
-    let modal = e.target,
-        div_summary = $(modal).find('#summary_mainpot'),
-        ul_contribs = div_summary.find('#ul_mainpot_contrib'),
-        span_calc_summary = div_summary.find('#mainpot_calc_summary'),
-        span_multipayer_explain = div_summary.find('#mainpot_multipayer_explain'),
-        ul_multipayers = div_summary.find('#ul_mainpot_multipayer');
 
-    // clear texts and lists.
-    ul_contribs.empty();
+    let modal = e.target,
+        div_mainpot = $(modal).find('#summary_mainpot'),
+        div_sidepot = $(modal).find('#summary_sidepots');
+
+    let ul_mainpot_contribs = div_mainpot.find('#ul_mainpot_contrib'),
+        span_calc_summary = div_mainpot.find('#mainpot_calc_summary'),
+        span_multipayer_explain = div_mainpot.find('#mainpot_multipayer_explain'),
+        ul_multipayers = div_mainpot.find('#ul_mainpot_multipayer');
+    
+    let ul_sidepots_contribs = div_sidepot.find('#ul_sidepots_contrib');
+
+    // clear mainpot section
+    ul_mainpot_contribs.empty();
     ul_multipayers.empty();
-    span_calc_summary.text(''),
-    span_multipayer_explain.text('')
+    span_calc_summary.text('');
+    span_multipayer_explain.text('');
+    
+    //clear sidepot section
+    ul_sidepots_contribs.empty();
+}
+
+kzzn.summary.sendViaWhatsApp = function(btn){
+    kzzn.util.buildSummaryTextContent(kzzn.data.getAll());
+}
+
+kzzn.summary.copyAsText = function(btn){
+    kzzn.util.buildSummaryTextContent(kzzn.data.getAll());
 }
 
 // fill the summary modal's mainpot section with all mainpot info
 function display_mainpot_info(modal, mainpot_data){
     let div_summary = $(modal).find('#summary_mainpot'),
         ul_contribs = div_summary.find('#ul_mainpot_contrib'),
-        span_calc_summary = div_summary.find('#mainpot_calc_summary'),
-        span_multipayer_explain = div_summary.find('#mainpot_multipayer_explain'),
+        div_calc_summary = div_summary.find('#mainpot_calc_summary'),
+        div_multipayer_explain = div_summary.find('#mainpot_multipayer_explain'),
         ul_multipayers = div_summary.find('#ul_mainpot_multipayer');
-
+    
     let amount_per_participant = Math.round(mainpot_data.mainpot_sum / mainpot_data.pCount),
         multipayers = [];
 
     $.each(mainpot_data.mainpot_contribs, function(i, contributor){
 
-        ul_contribs.append(`<li>${contributor.name} has contributed ${contributor.mainpot} to the main pot.</li>`);
+        ul_contribs.append(`<li><strong>${contributor.name}</strong> has contributed <strong>${contributor.mainpot}</strong> to the main pot.</li>`);
 
         if(contributor.count > 1)
             multipayers.push({name: contributor.name, amount: contributor.count * amount_per_participant});
     });
-    debugger;
-    span_multipayer_explain.text(`${multipayers.length} participants that are paying for multiple participants.`);
-    
-    span_calc_summary.text(`${mainpot_data.mainpot_contribs.length} participants have contributed a total of ${mainpot_data.mainpot_sum}.<br>Split evenly between ${mainpot_data.pCount} participants is ${amount_per_participant}.`);
-    
-    $.each(multipayers, function(i, multipayer){
-        ul_multipayers.append(`<li>${multipayer.name}: ${multipayer.amount}.</li>`);
-    });
 
+    div_calc_summary.append(`<strong>${mainpot_data.mainpot_contribs.length} participants</strong> have contributed a total of <strong>${mainpot_data.mainpot_sum}</strong> to the mainpot.<br>
+                              Split evenly between <strong>${mainpot_data.pCount} participants</strong> is <strong>${amount_per_participant}</strong>.`);
+    
+    if (multipayers.length > 0) {
+        div_multipayer_explain.append(`<strong>${multipayers.length} participants</strong> that are paying for multiple participants. their share is as follows:`);
+        $.each(multipayers, function(i, multipayer){
+            ul_multipayers.append(`<li><strong>${multipayer.name}</strong> should pay <strong>${multipayer.amount}</strong> to the mainpot.</li>`);
+        });
+    }
 }
 
 // fill the summary modal's sidepot section with all sidepot info
 function display_sidepots_info(modal, sidepot_contributors){
-    //
+    let div_summary = $(modal).find('#summary_sidepots'),
+        ul_contribs = div_summary.find('#ul_sidepots_contrib');
+    
+    $.each(sidepot_contributors, function (i, contributor) { 
+        $.each(contributor.sidepots, function (i, sidepot) {
+            let amount_per_participant = Math.round(sidepot.amount / sidepot.participants.length);
+            ul_contribs.append(`<li><strong>${contributor.name}</strong> has contributed <strong>${sidepot.amount}</strong> to a sidepot for:<br>
+                                <strong>${sidepot.participants.join(' , ')}</strong>.<br>
+                                which comes to <strong>${amount_per_participant} each</strong>.</li>`);
+        });
+    });
 }
