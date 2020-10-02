@@ -69,11 +69,13 @@ kzzn.summary.modal_summary_onClose = function (e) {
 }
 
 kzzn.summary.sendViaWhatsApp = function(btn){
-    kzzn.util.buildSummaryTextContent(kzzn.data.getAll());
+    let content = kzzn.util.buildSummaryAsText(kzzn.data.getAll());
 }
 
 kzzn.summary.copyAsText = function(btn){
-    kzzn.util.copySummaryAsText(kzzn.data.getAll());
+    let content = kzzn.util.buildSummaryAsText(kzzn.data.getAll());
+    kzzn.util.copy_to_clipboard(content);
+    $('#div_toast').toast('show'); continue here
 }
 
 // fill the summary modal's mainpot section with all mainpot info

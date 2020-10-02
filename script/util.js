@@ -18,14 +18,17 @@ kzzn.util.load_modals = function() {
 /***************************************************************************{ PARTICIPANTS }******/
 // initialize various components.
 kzzn.util.initComponents = function () {
-    //bootstrap popover
+    // bootstrap popover
     $('[data-toggle="popover"]').popover();
     
-    //bsMultiSelect
+    // bsMultiSelect
     $("#multiselect_participant").bsMultiSelect({
         placeholder: 'Select participants'
     });
     $('.dashboardcode-bsmultiselect').addClass('col-md-6');
+
+    //bootstrap toast.
+    $('.toast').toast();
 }
 
 // attach keypress events to various elements.
@@ -169,12 +172,7 @@ kzzn.util.sidePotList_removeRow = function (row, table){
 
 /*********************************************************************************{ SUMMARY }******/
 
-kzzn.util.copySummaryAsText = function (data){
-    let content = buildSummaryAsText(data);
-    copy_to_clipboard(content);
-}
-
-function buildSummaryAsText(data){
+kzzn.util.buildSummaryAsText = function (data){
     let str_result = '',
         mainpot_payers = data.filter(p => p.mainpot > 0),
         sidepot_payers = data.filter(p => p.sidepots.length > 0),
@@ -182,30 +180,33 @@ function buildSummaryAsText(data){
         participant_count = data.reduce((total, current) => total + current.count, 0),
         mainpot_sum = data.reduce((total, current) => total + current.mainpot, 0);
 
-    debugger;
-    $.each(mainpot_payers, function (i, payer) { 
-         str_result += `*${payer.name}* paid *${payer.mainpot}*\r\n`;
-    });
+    if (mainpot_payers.length > 0) {
+        str_result += `*----{ MAIN POT }----*\r\n\r\n`;
+        $.each(mainpot_payers, function (i, payer) { 
+            str_result += `*${payer.name}* paid *${payer.mainpot}*\r\n`;
+        });
+        str_result += `\r\nOverall a sum of *${mainpot_sum}* was collected by *${payer_count} payers* for the mainpot.\r\nThis amount is to be split evenly between *${participant_count} participants*\r\n,Which comes to *${Math.round(mainpot_sum/participant_count)}* each.\r\n\r\n`;        
+    }
 
-    str_result += `----------------\r\n`;
+    if (sidepot_payers.length > 0) {
+        str_result += `*----{ SIDE POTS }----*\r\n\r\n`;
+        $.each(sidepot_payers, function (i, payer) { 
+            $.each(payer.sidepots, function (i, sidepot) { 
+                str_result += `*${payer.name}* paid *${sidepot.amount}* for:\r\n*${sidepot.participants.join(', ')}*.\r\nWhich comes to *${Math.round(mainpot_sum/sidepot.participants.length)} each*.\r\n\r\n`;
+            });
+        });    
+    }
 
-    $.each(sidepot_payers, function (i, payer) { 
-         $.each(payer.sidepots, function (i, sidepot) { 
-              str_result += `${payer.name} paid ${sidepot.amount} for:\r\n
-                             ${sidepot.participants.join(', ')}.\r\n
-                             -----------------------------\r\n`;
-         });
-    });
+    return str_result;
+}
 
-    str_result += `----------------\r\n`;
-
-
-};
-
-function copy_to_clipboard(content) {
+kzzn.util.copy_to_clipboard = function (content) {
     let clipboard_container = $('#clipboard_container');
     
     clipboard_container.val(content);
     clipboard_container.select();
     document.execCommand('copy');
 }
+
+/*********************************************************************************{ KUZAZNU }******/
+
