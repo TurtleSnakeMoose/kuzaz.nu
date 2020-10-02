@@ -82,6 +82,12 @@
 	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, #a2c6cb));
 }
 
+#clipboard_container{
+	position: absolute;
+    bottom: 0;
+    left: 10000px;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ PARTICIPANTS }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 #participant_inputs{
@@ -313,7 +319,7 @@
 	margin: 0 5px;
 }
 #modal_participant_summary .modal-footer .fa-copy:before{
-	font-size: 27px;
+	font-size: 30px;
 	margin: 0 5px;
 }
 #modal_participant_summary .modal-footer #div_icons{

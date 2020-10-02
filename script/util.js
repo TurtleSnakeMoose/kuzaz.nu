@@ -169,11 +169,43 @@ kzzn.util.sidePotList_removeRow = function (row, table){
 
 /*********************************************************************************{ SUMMARY }******/
 
-kzzn.util.buildSummaryTextContent = function (data){
-    let mainpot_payers = [],
-        sidepot_payers = [];
+kzzn.util.copySummaryAsText = function (data){
+    let content = buildSummaryAsText(data);
+    copy_to_clipboard(content);
+}
 
-    $.each(data, function (i, payer) { 
-        debugger; 
+function buildSummaryAsText(data){
+    let str_result = '',
+        mainpot_payers = data.filter(p => p.mainpot > 0),
+        sidepot_payers = data.filter(p => p.sidepots.length > 0),
+        payer_count = data.length,
+        participant_count = data.reduce((total, current) => total + current.count, 0),
+        mainpot_sum = data.reduce((total, current) => total + current.mainpot, 0);
+
+    debugger;
+    $.each(mainpot_payers, function (i, payer) { 
+         str_result += `*${payer.name}* paid *${payer.mainpot}*\r\n`;
     });
+
+    str_result += `----------------\r\n`;
+
+    $.each(sidepot_payers, function (i, payer) { 
+         $.each(payer.sidepots, function (i, sidepot) { 
+              str_result += `${payer.name} paid ${sidepot.amount} for:\r\n
+                             ${sidepot.participants.join(', ')}.\r\n
+                             -----------------------------\r\n`;
+         });
+    });
+
+    str_result += `----------------\r\n`;
+
+
+};
+
+function copy_to_clipboard(content) {
+    let clipboard_container = $('#clipboard_container');
+    
+    clipboard_container.val(content);
+    clipboard_container.select();
+    document.execCommand('copy');
 }

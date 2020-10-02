@@ -73,7 +73,7 @@ kzzn.summary.sendViaWhatsApp = function(btn){
 }
 
 kzzn.summary.copyAsText = function(btn){
-    kzzn.util.buildSummaryTextContent(kzzn.data.getAll());
+    kzzn.util.copySummaryAsText(kzzn.data.getAll());
 }
 
 // fill the summary modal's mainpot section with all mainpot info
