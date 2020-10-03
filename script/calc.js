@@ -3,6 +3,7 @@ kzzn.calc = kzzn.calc || {};
 
 kzzn.calc.MainPotParticipantBalance = function (obj) {
     this.name = obj.Name || '';
+    this.count = obj.Count || 0;
     this.balance = obj.Balance || 0;
 }
 
@@ -25,12 +26,15 @@ function calculateMainPotTransactions(data) {
 
     let overpayers = [],
         underpayers = [];
+
     $.each(data, function (i, participant) { 
-        let participantBalance = new kzzn.calc.MainPotParticipantBalance({Name: participant.name, Balance: Math.abs(participant.mainpot - participantShare)});
+        let mainpotBalance = new kzzn.calc.MainPotParticipantBalance({Name: participant.name, Balance: Math.abs(participant.mainpot - (participantShare * participant.count))});
+        
          if (participant.mainpot > participantShare) 
-            overpayers.push(participantBalance);
+            overpayers.push(mainpotBalance);
+
          if (participant.mainpot < participantShare) 
-            underpayers.push(participantBalance);
+            underpayers.push(mainpotBalance);
     });
 
     underpayers.sort(function(a,b) { return a.balance - b.balance; }); //sort underpayers ascending
@@ -38,17 +42,30 @@ function calculateMainPotTransactions(data) {
 
     $(overpayers).each(function (i, op){
         $(underpayers).each(function (i, up){
-            if(up.balance == 0 || op.balance == 0)
-                return;
 
+            // return if either overpayer or underpayer is no longer in debt\credit.
+            if(up.balance === 0 || op.balance === 0)
+                return;
+            
+            // if current underpayer's debt is larger than the current overpayer's balance.
             if(op.balance - up.balance < 0 ){
+                // transaction: from current underpayer to current overpayer, the remainder of the current overpayer balance.
                 transactions.push({From: up.name, To: op.name, Total: Math.round(op.balance), Skip: false});
+
+                // subtract the current overpayer's balance from the current overpayer balance.
                 up.balance -= op.balance;
+                // nullify the overpayer balance.
                 op.balance = 0;
             }
+
+            // if current underpayer's debt completely covers the overpayer's remaining balance. 
             else {
+                // transaction: from current underpayer to current overpayer, the current underpayer balance.
                 transactions.push({From: up.name, To: op.name, Total: Math.round(up.balance), Skip: false});
+
+                // subtract the current overpayer's balance from the current overpayer balance.
                 op.balance -= up.balance;
+                // nullify the overpayer balance.
                 up.balance = 0;
             }
         });

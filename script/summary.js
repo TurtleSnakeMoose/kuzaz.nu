@@ -41,8 +41,8 @@ kzzn.summary.modal_summary_onshown = function (e) {
         sidepot_contribs: sidepot_contributors
     }
 
-    display_mainpot_info(modal, summaryData);
-    display_sidepots_info(modal, summaryData.sidepot_contribs);
+    display_mainpot_info(modal, data);
+    display_sidepots_info(modal, data);
 
     // build summary as formatted string, used for copying to clipboard and sending via whatsapp
     kzzn.data.paymentSummary_plainText = kzzn.util.buildSummaryAsText(data);
@@ -83,29 +83,33 @@ kzzn.summary.copyAsText = function(btn){
 }
 
 // fill the summary modal's mainpot section with all mainpot info
-function display_mainpot_info(modal, mainpot_data){
+function display_mainpot_info(modal, data){
     let div_summary = $(modal).find('#summary_mainpot'),
         ul_contribs = div_summary.find('#ul_mainpot_contrib'),
         div_calc_summary = div_summary.find('#mainpot_calc_summary'),
         div_multipayer_explain = div_summary.find('#mainpot_multipayer_explain'),
         ul_multipayers = div_summary.find('#ul_mainpot_multipayer');
-    
-    let amount_per_participant = Math.round(mainpot_data.mainpot_sum / mainpot_data.pCount),
+
+    let mainpot_sum = data.reduce((total, current) => total + current.mainpot, 0),
+        mainpot_contribs = data.filter(x => x.mainpot > 0),
+        pCount = data.reduce((total, current) => total + current.count, 0),
+        amount_per_participant = Math.round(mainpot_sum / pCount),
         multipayers = [];
 
-    $.each(mainpot_data.mainpot_contribs, function(i, contributor){
+    $.each(data, function(i, participant){
 
-        ul_contribs.append(`<li><strong>${contributor.name}</strong> has contributed <strong>${contributor.mainpot}</strong> to the main pot.</li>`);
+        ul_contribs.append(participant.mainpot > 0 ? `<li><strong>${participant.name}</strong> has contributed <strong>${participant.mainpot}</strong> to the main pot.</li>` : '');
 
-        if(contributor.count > 1)
-            multipayers.push({name: contributor.name, amount: contributor.count * amount_per_participant});
+        if(participant.count > 1)
+            multipayers.push({name: participant.name, amount: participant.count * amount_per_participant});
     });
 
-    div_calc_summary.append(`<strong>${mainpot_data.mainpot_contribs.length} participants</strong> have contributed a total of <strong>${mainpot_data.mainpot_sum}</strong> to the mainpot.<br>
-                              Split evenly between <strong>${mainpot_data.pCount} participants</strong> is <strong>${amount_per_participant}</strong>.`);
+    div_calc_summary.append(`<strong>${mainpot_contribs.length} participants</strong> have contributed a total of <strong>${mainpot_sum}</strong> to the mainpot.<br>
+                              Split evenly between <strong>${pCount} participants</strong> is <strong>${amount_per_participant}</strong>.`);
     
     if (multipayers.length > 0) {
         div_multipayer_explain.append(`<strong>${multipayers.length} participants</strong> that are paying for multiple participants. their share is as follows:`);
+        debugger;
         $.each(multipayers, function(i, multipayer){
             ul_multipayers.append(`<li><strong>${multipayer.name}</strong> should pay <strong>${multipayer.amount}</strong> to the mainpot.</li>`);
         });
