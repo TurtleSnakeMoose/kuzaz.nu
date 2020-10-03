@@ -315,14 +315,29 @@
 	padding: 10px
 }
 #modal_participant_summary .modal-footer .fa-whatsapp:before{
-	font-size: 36px;
+	font-size: 22px;
 	margin: 0 5px;
 }
+#modal_participant_summary .modal-footer .fa-whatsapp:link {
+    text-decoration: inherit;
+    color: inherit;
+}
+#modal_participant_summary .modal-footer .fa-whatsapp:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
 #modal_participant_summary .modal-footer .fa-copy:before{
-	font-size: 30px;
+	font-size: 20px;
 	margin: 0 5px;
 }
 #modal_participant_summary .modal-footer #div_icons{
 	margin: 0 15px;
 }
+
+#modal_participant_summary .toast_container {
+	position: absolute;
+    bottom: -10px;
+    right: 41px;
+}
+
 }

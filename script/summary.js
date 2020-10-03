@@ -1,6 +1,8 @@
 var kzzn = kzzn || {};
 kzzn.summary = kzzn.summary || {};
 
+kzzn.summary.summary_plainText = '';
+
 // triggers on "summary" button click - opens modal window
 kzzn.summary.openSummaryModal = function (e) {
     $('#modal_participant_summary').modal({
@@ -12,13 +14,14 @@ kzzn.summary.openSummaryModal = function (e) {
 
 // triggers on modal show for summary modal
 kzzn.summary.modal_summary_onshown = function (e) {
-    let modal = e.target,
+    let modal = $(e.target),
         data = kzzn.data.getAll(),
         participant_count = 0,
         mainpot_sum = 0,
         mainpot_contributors = [],
         sidepot_contributors = [],
-        summaryData = {};
+        summaryData = {},
+        btn_whatsapp = modal.find('.fa-whatsapp');
 
     $.each(data, function(index, payer){
 
@@ -42,6 +45,13 @@ kzzn.summary.modal_summary_onshown = function (e) {
 
     display_mainpot_info(modal, summaryData);
     display_sidepots_info(modal, summaryData.sidepot_contribs);
+
+    // build summary as formatted string, used for copying to clipboard and sending via whatsapp
+    kzzn.summary.summary_plainText = kzzn.util.buildSummaryAsText(data);
+
+    // set the whatsapp api content.
+    let whatsapp_content = kzzn.summary.summary_plainText.replaceAll('\r\n', '%0a');
+    btn_whatsapp.attr('href',`https://wa.me/?text=${whatsapp_content}`);
 }
 
 // triggers on modal close for summary modal
@@ -68,14 +78,10 @@ kzzn.summary.modal_summary_onClose = function (e) {
     ul_sidepots_contribs.empty();
 }
 
-kzzn.summary.sendViaWhatsApp = function(btn){
-    let content = kzzn.util.buildSummaryAsText(kzzn.data.getAll());
-}
-
+// copy the summary text into clipboard
 kzzn.summary.copyAsText = function(btn){
-    let content = kzzn.util.buildSummaryAsText(kzzn.data.getAll());
-    kzzn.util.copy_to_clipboard(content);
-    $('#div_toast').toast('show'); continue here
+    kzzn.util.copy_to_clipboard(kzzn.summary.summary_plainText);
+    $('#div_toast_summary').toast('show');
 }
 
 // fill the summary modal's mainpot section with all mainpot info
