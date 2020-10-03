@@ -1,8 +1,6 @@
 var kzzn = kzzn || {};
 kzzn.summary = kzzn.summary || {};
 
-kzzn.summary.summary_plainText = '';
-
 // triggers on "summary" button click - opens modal window
 kzzn.summary.openSummaryModal = function (e) {
     $('#modal_participant_summary').modal({
@@ -47,10 +45,10 @@ kzzn.summary.modal_summary_onshown = function (e) {
     display_sidepots_info(modal, summaryData.sidepot_contribs);
 
     // build summary as formatted string, used for copying to clipboard and sending via whatsapp
-    kzzn.summary.summary_plainText = kzzn.util.buildSummaryAsText(data);
+    kzzn.data.paymentSummary_plainText = kzzn.util.buildSummaryAsText(data);
 
     // set the whatsapp api content.
-    let whatsapp_content = kzzn.summary.summary_plainText.replaceAll('\r\n', '%0a');
+    let whatsapp_content = kzzn.data.paymentSummary_plainText.replaceAll('\r\n', '%0a');
     btn_whatsapp.attr('href',`https://wa.me/?text=${whatsapp_content}`);
 }
 
@@ -80,7 +78,7 @@ kzzn.summary.modal_summary_onClose = function (e) {
 
 // copy the summary text into clipboard
 kzzn.summary.copyAsText = function(btn){
-    kzzn.util.copy_to_clipboard(kzzn.summary.summary_plainText);
+    kzzn.util.copy_to_clipboard(kzzn.data.paymentSummary_plainText);
     $('#div_toast_summary').toast('show');
 }
 

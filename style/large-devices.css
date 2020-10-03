@@ -340,4 +340,47 @@
     right: 41px;
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ RESULT MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#modal_result .modal-content{
+	background-color: #F2C14E;
+}
+#modal_result .modal-body{
+	padding: 0 10px;
+}
+#modal_result .modal-body h5{
+	text-align: center;
+	font-weight: bold;
+	margin-top: 12px;
+}
+#modal_result .modal-footer{
+	border: 0;
+	padding: 10px
+}
+#modal_result .modal-footer .fa-whatsapp:before{
+	font-size: 22px;
+	margin: 0 5px;
+}
+#modal_result .modal-footer .fa-whatsapp:link {
+    text-decoration: inherit;
+    color: inherit;
+}
+#modal_result .modal-footer .fa-whatsapp:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
+#modal_result .modal-footer .fa-copy:before{
+	font-size: 20px;
+	margin: 0 5px;
+}
+#modal_result .modal-footer #div_icons{
+	margin: 0 15px;
+}
+
+#modal_result .toast_container {
+	position: absolute;
+    bottom: -10px;
+    right: 41px;
+}
+
 }

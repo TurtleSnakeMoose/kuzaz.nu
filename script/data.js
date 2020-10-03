@@ -40,6 +40,8 @@ kzzn.data.SidePot = function (obj) {
 
 kzzn.data.participants_data = [];
 
+kzzn.data.paymentSummary_plainText = '';
+kzzn.data.result_plainText = '';
 
 // add a new participant to the participants_data array.
 kzzn.data.add_participant = function (data) {

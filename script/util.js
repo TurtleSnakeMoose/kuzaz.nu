@@ -196,7 +196,7 @@ kzzn.util.buildSummaryAsText = function (data){
         str_result += `*----{ SIDE POTS }----*\r\n\r\n`;
         $.each(sidepot_payers, function (i, payer) { 
             $.each(payer.sidepots, function (i, sidepot) { 
-                str_result += `*${payer.name}* paid *${sidepot.amount}* for:\r\n*${sidepot.participants.join(', ')}*.\r\nWhich comes to *${Math.round(mainpot_sum/sidepot.participants.length)} each*.\r\n\r\n`;
+                str_result += `*${payer.name}* paid *${sidepot.amount}* for:\r\n*${sidepot.participants.join(', ')}*.\r\nWhich comes to *${Math.round(sidepot.amount/sidepot.participants.length)} each*.\r\n\r\n`;
             });
         });    
     }
@@ -212,5 +212,12 @@ kzzn.util.copy_to_clipboard = function (content) {
     document.execCommand('copy');
 }
 
-/*********************************************************************************{ KUZAZNU }******/
+/*********************************************************************************{ RESULT }******/
 
+kzzn.util.buildTable_result = function (arr_transaction) { 
+    let tableRows = '';
+    $.each(arr_transaction, function (i, transaction) { 
+         tableRows += `<tr> <td>${i+1}</td> <td>${transaction.From}</td> <td>${transaction.To}</td> <td>${transaction.Total}</td> </tr>`
+    });
+    return tableRows;
+}
