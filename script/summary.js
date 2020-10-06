@@ -109,7 +109,6 @@ function display_mainpot_info(modal, data){
     
     if (multipayers.length > 0) {
         div_multipayer_explain.append(`<strong>${multipayers.length} participants</strong> that are paying for multiple participants. their share is as follows:`);
-        debugger;
         $.each(multipayers, function(i, multipayer){
             ul_multipayers.append(`<li><strong>${multipayer.name}</strong> should pay <strong>${multipayer.amount}</strong> to the mainpot.</li>`);
         });

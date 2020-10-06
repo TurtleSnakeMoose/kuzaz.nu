@@ -214,10 +214,15 @@ kzzn.util.copy_to_clipboard = function (content) {
 
 /*********************************************************************************{ RESULT }******/
 
+kzzn.util.log = function(title, data) {
+    console.log(`~~~~~~~~~~~ {${title}} ~~~~~~~~~~~`);
+    console.table(data);
+}
+
 kzzn.util.buildTable_result = function (arr_transaction) { 
     let tableRows = '';
     $.each(arr_transaction, function (i, transaction) { 
-         tableRows += `<tr> <td>${i+1}</td> <td>${transaction.From}</td> <td>${transaction.To}</td> <td>${transaction.Total}</td> </tr>`
+         tableRows += `<tr> <td>${i+1}</td> <td>${transaction.from}</td> <td>${transaction.to}</td> <td>${transaction.total}</td> </tr>`
     });
     return tableRows;
 }
