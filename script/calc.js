@@ -127,20 +127,42 @@ function mergeTransactions(mainpot_transactions, sidepot_transactions) {
 
 // optimize the transactions by merging transactions that share the same "payer" and "payee"
 function optimizeTransactions(transactions_unoptimized) {
-    let non_optimizable = [],
-        optimizable = [],
+    let optimizable = [], // array of intersecting/matching transactions.
+        optimizable_groups = [], // array of optimizable transaction.
         transactions_optimized = [];
 
-    $.each(transactions_unoptimized, function (i, unoptimized_t) { 
+    // find all transactions with matching\intesecting participants. e.g:
+    // a => b or b => a
+    $.each(transactions_unoptimized, function (i, t_A) { 
 
-        if (unoptimized_t.skip)
+        if (t_A.skip)
             return;
-        unoptimized_t.skip = true;
+        t_A.skip = true;
 
+        optimizable.push(t_A);
+
+        $.each(transactions_unoptimized.filter(t => !t.skip), function (i, t_B) { 
+            if ((t_A.from === t_B.from || t_A.from === t_B.to) && (t_A.to === t_B.from || t_A.to === t_B.to)) {
+                t_B.skip = true;
+                optimizable.push(t_B);
+            }     
+        });
         
-
+        optimizable_groups.push(optimizable);
+        optimizable = [];
     });
 
+    $.each(optimizable_groups, function (i, group) { 
+
+        // if optimizable group contains only one transaction - push it to optimized array.
+        if (group.length <= 1) 
+            transactions_optimized.push();
+
+        // if optimizable group contains multiple transactins, merge them and push the result to the optimized array.
+        else {
+            debugger;
+        }
+    });
 
     return transactions_optimized;
 }
