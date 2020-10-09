@@ -18,6 +18,7 @@ kzzn.result.modal_result_onshown = function(e){
     btn_whatsapp = modal.find('.fa-whatsapp');
     
     let result_transactions = kzzn.calc.calculate(data);
+
     result_tbody.append(kzzn.util.buildTable_result(result_transactions));
 };
 

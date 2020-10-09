@@ -15,15 +15,16 @@ kzzn.calc.Transaction = function (obj) {
 }
 
 kzzn.calc.calculate = function(data){
-    // LOG - display raw data in console
-    kzzn.util.log('RAW DATA', data);
-    let mainpot_transactions = calculateMainPotTransactions(data), // first calculate the transactions regarding the mainpot expenses.
-        sidepot_transactions = calculateSidePotTransactions(data); // second, calculate the transactions regarding the sidepot expenses.
-       // merged_transactions = mergeTransactions(mainpot_transactions, sidepot_transactions), // third, merge the mainpot transaction list with the sidepot transaction list.
-       // optimized_transactions = optimizeTransactions(merged_transactions); // finally, optimize the transactions by merging transactions that share the same "payer" and "payee".
 
-    // return optimized_transactions;
-    return sidepot_transactions;
+    kzzn.util.log('RAW DATA', data);
+
+    let mainpot_transactions = calculateMainPotTransactions(data), // first calculate the transactions regarding the mainpot expenses.
+        sidepot_transactions = calculateSidePotTransactions(data), // second, calculate the transactions regarding the sidepot expenses.
+        merged_transactions = mergeTransactions(mainpot_transactions, sidepot_transactions); // third, merge the mainpot transaction list with the sidepot transaction list.
+        optimized_transactions = optimizeTransactions(merged_transactions); // finally, optimize the transactions by merging transactions that share the same "payer" and "payee".
+
+    kzzn.util.log('FINAL RESULT', optimized_transactions);
+    return optimized_transactions;
 }
 
 // first, calculate the transactions regarding the mainpot expenses
@@ -120,21 +121,26 @@ function calculateSidePotTransactions(data) {
     return transactions_optimized;
 }
 
-// third, merge the mainpot transaction list with the sidepot transaction list.
-function mergeTransactions(mainpot_transactions, sidepot_transactions) {
-    
+// third, merge the mainpot transaction array with the sidepot transaction array.
+function mergeTransactions(array_a, array_b) {
+    let arr_merged = $.merge( array_a, array_b );
+    kzzn.util.log('MERGED TRANSACTIONS UNOPTIMIZED', arr_merged);
+    return arr_merged;
 }
 
 // optimize the transactions by merging transactions that share the same "payer" and "payee"
 function optimizeTransactions(transactions_unoptimized) {
     let optimizable = [], // array of intersecting/matching transactions.
         optimizable_groups = [], // array of optimizable transaction.
-        transactions_optimized = [];
+        transactions_optimized = []; // final array of optimized transactions.
 
-    // find all transactions with matching\intesecting participants. e.g:
-    // a => b or b => a
+    // ### FIRST STEP ####
+    // find and push all transactions with matching\intesecting participants (a => b OR b => a) into an array (optimizable).
+    // finally, push these arrays into another array (optimizable_groups) for merging (SECOND STEP).
+    // transactions without a match will be pushed into optimizable_groups by themselves.
     $.each(transactions_unoptimized, function (i, t_A) { 
 
+        // skip is a flag for transactions that were checked for already, prevents duplicates.
         if (t_A.skip)
             return;
         t_A.skip = true;
@@ -152,15 +158,43 @@ function optimizeTransactions(transactions_unoptimized) {
         optimizable = [];
     });
 
+    // ### SECOND STEP ####
+    // run through each group of optimizable transactions,
+    // if group contains 1 transaction, it is considered optimized and is pushed to transactions_optimized array.
+    // if group contains multiple transactions, merge them into one calculated transaction and push it into transactions_optimized.
     $.each(optimizable_groups, function (i, group) { 
 
         // if optimizable group contains only one transaction - push it to optimized array.
-        if (group.length <= 1) 
-            transactions_optimized.push();
+        if (group.length === 1) 
+            transactions_optimized.push(group[0]); // push the first(and only) transaction in the group to the optimized array
 
         // if optimizable group contains multiple transactins, merge them and push the result to the optimized array.
         else {
-            debugger;
+            var participant_a = { name: group[0].from, amount: 0},
+                participant_b = { name: group[0].to, amount: 0};
+
+            // accumulate the total of each participant in the group, to later compare the totals
+            $.map(group, x => {
+                x.from == participant_a.name ? participant_a.amount += x.total : participant_b.amount += x.total;
+            })
+
+            transactions_optimized.push(
+                participant_a.amount >= participant_b.amount 
+                ?
+                    // if participant_a's 'amount' is larger, push a merged transaction (a => b => a.amount - b.amount)
+                    new kzzn.calc.Transaction({
+                        From:  participant_a.name,
+                        To: participant_b.name,
+                        Total: participant_a.amount - participant_b.amount
+                    })
+                :
+                    // if participant_b's 'amount' is larger, push a merged transaction (b => a => b.amount - a.amount)
+                    new kzzn.calc.Transaction({
+                        From:  participant_b.name,
+                        To: participant_a.name,
+                        Total: participant_b.amount - participant_a.amount
+                    })
+            );
         }
     });
 
