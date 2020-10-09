@@ -17,9 +17,16 @@ kzzn.result.modal_result_onshown = function(e){
     data = kzzn.data.getAll(),
     btn_whatsapp = modal.find('.fa-whatsapp');
     
-    let result_transactions = kzzn.calc.calculate(data);
+    let result_transactions = kzzn.calc.calculate(data); // calculate transactions into an array.
 
-    result_tbody.append(kzzn.util.buildTable_result(result_transactions));
+    result_tbody.append(kzzn.util.buildTable_result(result_transactions)); // display transactions as a table.
+
+    // build transactions as formatted string, used for copying to clipboard and sending via whatsapp
+    kzzn.data.transactions_plainText = kzzn.util.buildTransactionsAsText(result_transactions);
+
+    // set the whatsapp api content.
+    let whatsapp_content = kzzn.data.transactions_plainText.replaceAll('\r\n', '%0a');
+    btn_whatsapp.attr('href',`https://wa.me/?text=${whatsapp_content}`);
 };
 
 // triggers when result modal begins to close.
@@ -30,3 +37,7 @@ kzzn.result.modal_result_onClose = function (e){
     result_tbody.empty();
 };
 
+kzzn.result.copyAsText = function (e){
+    kzzn.util.copy_to_clipboard(kzzn.data.transactions_plainText);
+    $('#div_toast_result').toast('show');
+};

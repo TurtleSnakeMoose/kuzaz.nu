@@ -2,11 +2,16 @@
 	<div class="modal-content">
 
 		<div class="modal-body">
-
+			<h5>Transactions table</h5>
 			<div id="transactions_list" class="table">
 				<table>
 					<thead>
-						<tr> <td>#</td>  <td>From</td>  <td>To</td>  <td>Amount</td> </tr>
+						<tr> 
+							<td>#</td>
+							<td>From</td>
+							<td>To</td>
+							<td>Amount</td> 
+						</tr>
 					</thead>
 					<tbody>
 					</tbody>
@@ -20,7 +25,7 @@
 		<div class="modal-footer">
 			<div id="div_icons">
 				<a tabindex="0" target="_blank" class="fab fa-whatsapp pointer"></a> 
-				<i class="fas fa-copy pointer" onclick="kzzn.summary.copyAsText(this)"></i>
+				<i class="fas fa-copy pointer" onclick="kzzn.result.copyAsText(this)"></i>
 				<textarea id="clipboard_container" value=''></textarea> <!--this is used to store text when copying\sending via whatsapp-->
 			</div>
 			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

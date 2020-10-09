@@ -20,6 +20,16 @@ kzzn.util.load_modals = function() {
     modal_result.on('hide.bs.modal', function (e) { kzzn.result.modal_result_onClose(e); })
 }
 
+/***************************************************************************{ SHARED }******/
+
+kzzn.util.copy_to_clipboard = function (content) {
+    let clipboard_container = $('#clipboard_container');
+    debugger;
+    clipboard_container.val(content);
+    clipboard_container.select();
+    document.execCommand('copy');
+}
+
 /***************************************************************************{ PARTICIPANTS }******/
 // initialize various components.
 kzzn.util.initComponents = function () {
@@ -204,14 +214,6 @@ kzzn.util.buildSummaryAsText = function (data){
     return str_result;
 }
 
-kzzn.util.copy_to_clipboard = function (content) {
-    let clipboard_container = $('#clipboard_container');
-    
-    clipboard_container.val(content);
-    clipboard_container.select();
-    document.execCommand('copy');
-}
-
 /*********************************************************************************{ RESULT }******/
 
 kzzn.util.log = function(title, data) {
@@ -222,7 +224,18 @@ kzzn.util.log = function(title, data) {
 kzzn.util.buildTable_result = function (arr_transaction) { 
     let tableRows = '';
     $.each(arr_transaction, function (i, transaction) { 
-         tableRows += `<tr> <td>${i+1}</td> <td>${transaction.from}</td> <td>${transaction.to}</td> <td>${transaction.total}</td> </tr>`
+         tableRows += `<tr> 
+                            <td>${i+1}.</td>
+                            <td> <strong>${transaction.from}</strong> <i class="fas fa-arrow-right"></i> </td>
+                            <td> <strong>${transaction.to}</strong> <i class="fas fa-hand-holding-usd"></i> </td>
+                            <td> <strong>${transaction.total}</strong> </td>
+                        </tr>`;
     });
     return tableRows;
 }
+
+kzzn.util.buildTransactionsAsText = function (arr_transactions){
+    let str_result = `CykaBlyat`;
+    return str_result;
+}
+

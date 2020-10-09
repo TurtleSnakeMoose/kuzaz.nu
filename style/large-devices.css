@@ -353,6 +353,23 @@
 	font-weight: bold;
 	margin-top: 12px;
 }
+#modal_result .modal-body #transactions_list{
+    text-align: center;
+}
+#modal_result .modal-body #transactions_list table{
+	margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+#modal_result .modal-body #transactions_list table td{
+	border: 0;
+	position: relative;
+}
+#modal_result .modal-body #transactions_list table td i{
+	position: absolute;
+    right: 2px;
+    bottom: 15px;
+}
 #modal_result .modal-footer{
 	border: 0;
 	padding: 10px
