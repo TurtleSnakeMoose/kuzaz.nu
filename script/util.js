@@ -77,7 +77,7 @@ kzzn.util.setStatus_ActionButtons = function(){
 
 // clear the participant data object and clear the participant table list.
 kzzn.util.clearData = function(){
-    kzzn.data.participants_data = {};
+    kzzn.data.participants_data = [{}];
     kzzn.util.participantList_clear();
 }
 
