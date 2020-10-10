@@ -17,6 +17,9 @@ kzzn.participants.addParticipant = function(button) {
         kzzn.data.loadHardCodedDataByName(tbody, name);
         kzzn.util.participantList_summarize(table);
         input_name.val('').focus();
+
+        // enable/disable the "SUMMARY"|"CALCULATE" btns if no expenses were specified.
+        kzzn.util.setStatus_ActionButtons();
         return;
     }
 
@@ -25,6 +28,9 @@ kzzn.participants.addParticipant = function(button) {
         kzzn.util.participantList_addRow(tbody, name, count); // add row if valid
         input_name.val('').focus();
         kzzn.util.participantList_summarize(table);
+
+        // enable/disable the "SUMMARY"|"CALCULATE" btns if no expenses were specified.
+        kzzn.util.setStatus_ActionButtons();
     }
     else{
         console.log('participant invalid');
@@ -40,6 +46,9 @@ kzzn.participants.removeParticipant = function(button){
     kzzn.util.participantList_removeRow(removedRow, table);
     kzzn.data.remove_participant(participantName)
     kzzn.util.participantList_summarize(table);
+
+    // enable/disable the "SUMMARY"|"CALCULATE" btns if no expenses were specified.
+    kzzn.util.setStatus_ActionButtons();
 }
 
 // triggered on "+"\"-" icon click on participant count.

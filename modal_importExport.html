@@ -1,0 +1,32 @@
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		
+		<div class='modal-header'>
+			<h5>Import \ Export data</h5>
+			<i tabindex="0" class="fas fa-question-circle pointer additional_info" data-for="modal_importExport" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
+		</div>
+
+		<div class="modal-body">
+
+		</div>
+
+		<div class="modal-footer">
+				<textarea class="clipboard_container" id="importExport_clipboard_container" value=''></textarea> <!--this is used to store text when copying\sending via whatsapp-->
+			</div>
+			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+
+<!--------------------------------------------------------------------------------{{ TOAST }}-------->
+	<!-- Flexbox container for aligning the toasts -->
+	<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center toast_container" style="min-height: 200px;">
+		<!-- Then put toasts within -->
+		<div id="div_toast_importExport" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+			<div class="toast-body">
+				data copied as text to clipboard!
+			</div>
+		</div>
+	</div>
+<!---------------------------------------------------------------------------------------------------->
+
+</div>

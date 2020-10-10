@@ -100,5 +100,3 @@ kzzn.data.loadHardCodedDataByName = function (tbody, groupName) {
         kzzn.data.add_participant({Name: item.name, Count: item.count, MainPot: item.mainpot, SidePots: item.sidepots});
     });
 }
-
-

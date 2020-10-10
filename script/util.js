@@ -5,6 +5,7 @@ kzzn.util = kzzn.util || {};
 kzzn.util.load_modals = function() {
     let modal_payments = $('#modal_payments'),
         modal_summary = $('#modal_participant_summary'),
+        modal_importExport = $('#modal_importExport'),
         modal_result = $('#modal_result');
 
     modal_payments.load("modal_payments.html");
@@ -18,19 +19,12 @@ kzzn.util.load_modals = function() {
     modal_result.load("modal_result.html");
     modal_result.on('shown.bs.modal', function (e) { kzzn.result.modal_result_onshown(e); })
     modal_result.on('hide.bs.modal', function (e) { kzzn.result.modal_result_onClose(e); })
+
+    modal_importExport.load("modal_importExport.html");
+    modal_importExport.on('shown.bs.modal', function (e) { kzzn.importExport.modal_importExport_onshown(e); })
+    modal_importExport.on('hide.bs.modal', function (e) { kzzn.importExport.modal_importExport_onClose(e); })
 }
 
-/***************************************************************************{ SHARED }******/
-
-kzzn.util.copy_to_clipboard = function (content) {
-    let clipboard_container = $('#clipboard_container');
-    debugger;
-    clipboard_container.val(content);
-    clipboard_container.select();
-    document.execCommand('copy');
-}
-
-/***************************************************************************{ PARTICIPANTS }******/
 // initialize various components.
 kzzn.util.initComponents = function () {
     // bootstrap popover
@@ -54,6 +48,36 @@ kzzn.util.attachKeyEvents = function () {
     participant_inputs.on('keyup', function(event) { if (event.keyCode === 13) { btn_addParticiapant.click(); } });
 }
 
+/***************************************************************************{ SHARED }******/
+
+kzzn.util.copy_to_clipboard = function (content, clipboard_container) {
+    clipboard_container.val(content);
+    clipboard_container.select();
+    document.execCommand("copy");
+}
+
+// enable/disable the "SUMMARY"|"CALCULATE" btns if no expenses were specified.
+kzzn.util.setStatus_ActionButtons = function(){
+    let btn_summary = $('#btn_summary'),
+        btn_calculate = $('#btn_calculate');
+    
+    btn_summary.removeAttr('disabled');
+    btn_calculate.removeAttr('disabled');
+
+    let data = kzzn.data.participants_data,
+        mainpot_payers = data.filter(p => p.mainpot > 0),
+        sidepot_payers = data.filter(p => p.sidepots.length > 0),
+        enable_btns = mainpot_payers.length > 0 || sidepot_payers.length > 0;
+
+    if (!enable_btns) {
+        btn_summary.attr('disabled', true);
+        btn_calculate.attr('disabled', true);
+    }
+}
+
+/***************************************************************************{ PARTICIPANTS }******/
+
+
 // validate participant input before adding to table.
 kzzn.util.participantList_validateRow = function (tbody, name, count){
     let participantRows = tbody.find('tr'),
@@ -65,7 +89,7 @@ kzzn.util.participantList_validateRow = function (tbody, name, count){
             isValid = false;
         
         $.each(names, function(index, item){
-            if(item.textContent === name)
+            if(item.textContent.toLowerCase() === name.toLowerCase())
                 isValid = false;
         });
 
@@ -89,7 +113,7 @@ kzzn.util.participantList_addRow = function (tbody, name, count){
                             <i class="fas fa-minus-circle pointer" onclick="kzzn.participants.alterParticipantCount(this, 'remove')"></i>
                         </td>
                         <td>
-                            <i class="fas fa-comment-dollar pointer" onclick="kzzn.payments.editParticipantPayments(this)" title='Edit payments'></i>
+                            <i class="fas fa-shekel-sign pointer" onclick="kzzn.payments.editParticipantPayments(this)" title='Edit payments'></i>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <i class="fas fa-trash pointer" onclick="kzzn.participants.removeParticipant(this)" title='Remove participant'></i>
                         </td>
@@ -225,17 +249,33 @@ kzzn.util.buildTable_result = function (arr_transaction) {
     let tableRows = '';
     $.each(arr_transaction, function (i, transaction) { 
          tableRows += `<tr> 
-                            <td>${i+1}.</td>
-                            <td> <strong>${transaction.from}</strong> <i class="fas fa-arrow-right"></i> </td>
-                            <td> <strong>${transaction.to}</strong> <i class="fas fa-hand-holding-usd"></i> </td>
-                            <td> <strong>${transaction.total}</strong> </td>
-                        </tr>`;
+                            <td class='ten-p'> ${i+1}. </td>
+                            <td class='thirty-p'> <span class='bold'>${transaction.from} </span> <i class="fas fa-arrow-right"></i> </td>
+                            <td class='thirty-p'> <span class='bold'>${transaction.to} </span> <i class="fas fa-hand-holding-usd"></i> </td>
+                            <td class='thirty-p'> <span class='bold'>${transaction.total} </span> </td>
+                       </tr>`;
     });
     return tableRows;
 }
 
 kzzn.util.buildTransactionsAsText = function (arr_transactions){
-    let str_result = `CykaBlyat`;
+    let str_result = '';
+        arr_groupedByPayer = arr_transactions.reduce((r, a) => { // group transactions by payer.
+            r[a.from] = [...r[a.from] || [], a];
+            return r;
+        }, {});
+
+    str_result += `*----{ RESULT TRANSACTIONS }----*\r\n\r\n`;
+    $.each(arr_groupedByPayer, function (i, group) { 
+        var payer = group[0].from;
+
+        str_result += `_*${payer}*_ should pay:\r\n`;
+        $.each(group, function (i, transaction) { 
+            str_result += `            *${transaction.total}* --> *${transaction.to}*\r\n`;
+        });
+        str_result += `--------------------------\r\n`;
+    });
+
     return str_result;
 }
 

@@ -78,7 +78,8 @@ kzzn.summary.modal_summary_onClose = function (e) {
 
 // copy the summary text into clipboard
 kzzn.summary.copyAsText = function(btn){
-    kzzn.util.copy_to_clipboard(kzzn.data.paymentSummary_plainText);
+    let clipboard_container = $('#summary_clipboard_container');
+    kzzn.util.copy_to_clipboard(kzzn.data.paymentSummary_plainText, clipboard_container);
     $('#div_toast_summary').toast('show');
 }
 

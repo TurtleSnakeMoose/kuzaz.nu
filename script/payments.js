@@ -60,10 +60,13 @@ kzzn.payments.modal_updateParticipantData = function(event) {
     
     kzzn.data.save_participantPaymentData(dataToSave);
 
+    
     // clear input and table
     sidepot_rows.remove();
     input_mainpot.val('');
-
+    
+    // enable/disable the "SUMMARY"|"CALCULATE" btns if no expenses were specified.
+    kzzn.util.setStatus_ActionButtons();
 }
 
 // add sidepot info by inputs at modal.

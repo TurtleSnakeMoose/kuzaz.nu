@@ -93,7 +93,6 @@ function calculateMainPotTransactions(data) {
 function calculateSidePotTransactions(data) {
     let sidepot_payers = data.filter(x => x.sidepots.length > 0);
         transactions = [],
-        transactions_optimized = [];
 
     $.each(sidepot_payers, function (i, participant) { 
          $.each(participant.sidepots , function (i, sidepot) { 
@@ -115,16 +114,14 @@ function calculateSidePotTransactions(data) {
          });
     });
 
-    transactions_optimized = optimizeTransactions(transactions);
-    kzzn.util.log('SIDEPOT UNOPTIMIZED', transactions);
-    kzzn.util.log('SIDEPOT OPTIMIZED', transactions_optimized);
-    return transactions_optimized;
+    kzzn.util.log('SIDEPOT TRANSACTIONS', transactions);
+    return transactions;
 }
 
 // third, merge the mainpot transaction array with the sidepot transaction array.
 function mergeTransactions(array_a, array_b) {
     let arr_merged = $.merge( array_a, array_b );
-    kzzn.util.log('MERGED TRANSACTIONS UNOPTIMIZED', arr_merged);
+    kzzn.util.log('MERGED TRANSACTIONS', arr_merged);
     return arr_merged;
 }
 
@@ -198,5 +195,6 @@ function optimizeTransactions(transactions_unoptimized) {
         }
     });
 
-    return transactions_optimized;
+    // return optimized and sorted array of transactions.
+    return transactions_optimized.sort((a, b) => a.from.localeCompare(b.from));
 }

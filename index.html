@@ -10,7 +10,7 @@
 	  <meta name="keywords" content="break even, התחשבונות, חובות">
 	  <meta name="author" content="Michael Roskin">
 	  
-	  <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
+	  <link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
 	  <link rel="icon" href="assets/logo/favicon.ico">
 	  <link href="style/bootstrap/bootstrap.min.css" rel="stylesheet">
 	  <link href="style/fontawsome/fontawesome.css" rel="stylesheet">
@@ -33,12 +33,13 @@
 	  <script src="script/participants.js"></script>
 	  <script src="script/payments.js"></script>
 	  <script src="script/result.js"></script>
+	  <script src="script/importExport.js"></script>
 	  <script src="script/site.js"></script>
 	</head>
 	
 	<body class="ltr">
-		<div id="page_container" class="container-fluid">
 
+		<div id="page_container" class="container-fluid">
 			<img id="logo_main" src="assets/logo/logo_kuzaznu.svg">
 
 <!---------------------------------------------------------------------------------- {{ PARTICIPANT }} --->			
@@ -46,7 +47,7 @@
 			<div id="section_participants" class="section" data-section-for="participants">
 
 				<div class="info_box">
-					<label class="bold title">Add participants</label>
+					<label class="bold title">Participants</label>
 					<i tabindex="0" class="fas fa-question-circle pointer additional_info" data-for="section_participants" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
 				</div>
 
@@ -77,8 +78,9 @@
 						<label></label>
 					</div>
 					<div class="div_buttons">
-						<button type="button" class="btn btn-primary" onclick="kzzn.result.openResultModal()">Result</button>
-						<button type="button" class="btn btn-primary" onclick="kzzn.summary.openSummaryModal()">Summary</button>
+						<i class="fas fa-archive pointer" title="Import / export data" onclick="kzzn.importExport.openImportExportModal()"></i>
+						<button type="button" id="btn_summary" class="btn btn-primary" disabled onclick="kzzn.summary.openSummaryModal()">SUMMARY</button>
+						<button type="button" id="btn_calculate" class="btn btn-primary" disabled onclick="kzzn.result.openResultModal()">CALCULATE</button>
 					</div>
 				</div>
 
@@ -92,11 +94,15 @@
 
 			<div class="modal fade" id="modal_participant_summary" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="summaryModal" aria-hidden="true"></div>	
 			
-<!------------------------------------------------------------------{{ KUZAZNU MODAL }}-------->
+<!------------------------------------------------------------------{{ RESULTS MODAL }}-------->
 
 			<div class="modal fade" id="modal_result" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="resultModal" aria-hidden="true"></div>	
 
-<!------------------------------------------------------------------------------------ {{ RESULT }} -------->
+<!------------------------------------------------------------------{{ IMPORT EXPORT MODAL }}-------->
+
+			<div class="modal fade" id="modal_importExport" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="importExportModal" aria-hidden="true"></div>	
+
+<!------------------------------------------------------------------------------------ {{ RESULT }} -------->	
 
 			<div id="section_result" class="section hidden" data-section-for="result"></div>
 

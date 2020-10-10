@@ -1,10 +1,21 @@
 <div class="modal-dialog" role="document">
 	<div class="modal-content">
 
+		<div class='modal-header'>
+			<h5>Final Transactions</h5>
+			<i tabindex="0" class="fas fa-question-circle pointer additional_info" data-for="modal_result" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
+		</div>
+		
 		<div class="modal-body">
-			<h5>Transactions table</h5>
+			
 			<div id="transactions_list" class="table">
 				<table>
+					<colgroup>
+						<col class="ten-p" />
+						<col class="thirty-p"/>
+						<col class="thirty-p" />
+						<col class="thirty-p" />
+					</colgroup>
 					<thead>
 						<tr> 
 							<td>#</td>
@@ -26,7 +37,7 @@
 			<div id="div_icons">
 				<a tabindex="0" target="_blank" class="fab fa-whatsapp pointer"></a> 
 				<i class="fas fa-copy pointer" onclick="kzzn.result.copyAsText(this)"></i>
-				<textarea id="clipboard_container" value=''></textarea> <!--this is used to store text when copying\sending via whatsapp-->
+				<textarea class="clipboard_container" id="result_clipboard_container" value=''></textarea> <!--this is used to store text when copying\sending via whatsapp-->
 			</div>
 			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 		</div>

@@ -38,6 +38,7 @@ kzzn.result.modal_result_onClose = function (e){
 };
 
 kzzn.result.copyAsText = function (e){
-    kzzn.util.copy_to_clipboard(kzzn.data.transactions_plainText);
+    let clipboard_container = $('#result_clipboard_container');
+    kzzn.util.copy_to_clipboard(kzzn.data.transactions_plainText, clipboard_container);
     $('#div_toast_result').toast('show');
 };

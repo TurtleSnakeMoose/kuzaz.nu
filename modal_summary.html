@@ -3,6 +3,10 @@
 
 		<div class="modal-body">
 
+			<div class="modal-header">
+				<i tabindex="0" class="fas fa-question-circle pointer additional_info" data-for="modal_summary" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
+			</div>
+
 			<div id="summary_mainpot">
 				<h5>Mainpot summary</h5>
 				<div class="div_pot_info">
@@ -32,7 +36,7 @@
 			<div id="div_icons">
 				<a tabindex="0" target="_blank" class="fab fa-whatsapp pointer"></a> 
 				<i class="fas fa-copy pointer" onclick="kzzn.summary.copyAsText(this)"></i>
-				<textarea id="clipboard_container" value=''></textarea> <!--this is used to store text when copying\sending via whatsapp-->
+				<textarea class="clipboard_container" id="summary_clipboard_container" value=''></textarea> <!--this is used to store text when copying\sending via whatsapp-->
 			</div>
 			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 		</div>

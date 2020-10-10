@@ -50,15 +50,18 @@
 	font-weight: bold;
 }
 
+.ten-p{
+	width: 10%;
+}
+
+.thirty-p{
+	width: 30%;
+}
+
 .divider{
 	border-bottom: 4px #f1e08c ridge;
     width: 540px;
     margin: 0 auto;
-}
-
-.modal_divider{
-	width: 100%;
-    border-bottom: 4px groove #5eb5cf8a;
 }
 
 .btn-primary{
@@ -82,7 +85,7 @@
 	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, #a2c6cb));
 }
 
-#clipboard_container{
+.clipboard_container{
 	position: absolute;
     bottom: 0;
     left: 10000px;
@@ -158,8 +161,33 @@
     justify-content: space-between;
 }
 
+#participant_summary .div_buttons i{
+	font-size: 22px !important;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 6px;
+}
+
 #participant_summary label{
 	font-weight: bold;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ SHARED MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.modal_divider{
+	width: 100%;
+    border-bottom: 4px groove #5eb5cf8a;
+}
+
+.modal-header{
+	padding: 10px;
+    border: 0;
+}
+
+.modal-content .fa-question-circle{
+	position: absolute;
+    top: 12px;
+    right: 0px;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ PAYMENTS MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -175,10 +203,6 @@
 }
 #modal_payments .modal-content{
 	background-color: #F2C14E;
-}
-#modal_payments .modal-header{
-	padding: 10px;
-	border: 0;
 }
 #modal_payments .modal-body{
 	font-weight: bold;
@@ -277,6 +301,7 @@
 #modal_participant_summary .modal-content{
 	background-color: #F2C14E;
 }
+
 #modal_participant_summary .modal-body{
 	padding: 0 10px;
 }
@@ -354,7 +379,9 @@
 	margin-top: 12px;
 }
 #modal_result .modal-body #transactions_list{
-    text-align: center;
+	text-align: center;
+	max-height: 75vh;
+    overflow-y: auto;
 }
 #modal_result .modal-body #transactions_list table{
 	margin-left: auto;
@@ -365,10 +392,15 @@
 	border: 0;
 	position: relative;
 }
-#modal_result .modal-body #transactions_list table td i{
+#modal_result .modal-body #transactions_list table td i.fa-arrow-right{
 	position: absolute;
-    right: 2px;
+    right: -9px;
     bottom: 15px;
+}
+#modal_result .modal-body #transactions_list table td i.fa-hand-holding-usd{
+	position: absolute;
+    right: -10px;
+    bottom: 19px;
 }
 #modal_result .modal-footer{
 	border: 0;
@@ -398,6 +430,20 @@
 	position: absolute;
     bottom: -10px;
     right: 41px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ RESULT MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#modal_importExport .modal-content{
+	background-color: #F2C14E;
+}
+#modal_importExport .modal-body{
+	padding: 0 10px;
+}
+#modal_importExport .modal-body h5{
+	text-align: center;
+	font-weight: bold;
+	margin-top: 12px;
 }
 
 }
