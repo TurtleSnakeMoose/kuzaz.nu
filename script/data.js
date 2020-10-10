@@ -86,6 +86,11 @@ kzzn.data.getAll = function () {
     return kzzn.data.participants_data;
 }
 
+// get data as a json string.
+kzzn.data.Json_getAll = function () {
+    return JSON.stringify(kzzn.data.participants_data);
+}
+
 // get a specific particpant's data from participants_data.
 kzzn.data.getDataByName = function (name) {
     return kzzn.data.participants_data.filter(p => p.name === name);
@@ -94,8 +99,11 @@ kzzn.data.getDataByName = function (name) {
 // load data array and participant table with hardcoded data.
 kzzn.data.loadHardCodedDataByName = function (tbody, groupName) {
     var hardcoded_list = kzzn.data._hardCodedData.filter(x => x.name === groupName);
+    kzzn.data.loadParticipantData(tbody, hardcoded_list[0].data);
+}
 
-    $.each(hardcoded_list[0].data, function (i, item){
+kzzn.data.loadParticipantData = function(tbody, data){
+    $.each(data, function (i, item){
         kzzn.util.participantList_addRow(tbody, item.name, item.count);
         kzzn.data.add_participant({Name: item.name, Count: item.count, MainPot: item.mainpot, SidePots: item.sidepots});
     });

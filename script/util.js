@@ -75,6 +75,12 @@ kzzn.util.setStatus_ActionButtons = function(){
     }
 }
 
+// clear the participant data object and clear the participant table list.
+kzzn.util.clearData = function(){
+    kzzn.data.participants_data = {};
+    kzzn.util.participantList_clear();
+}
+
 /***************************************************************************{ PARTICIPANTS }******/
 
 
@@ -167,6 +173,13 @@ kzzn.util.participantList_removeRow = function (row, table){
 
 }
 
+// clear the participant list and the list summary.
+kzzn.util.participantList_clear = function (){
+    let table = $('#participant_list table');
+
+    table.find('tbody').empty();
+    kzzn.util.participantList_summarize(table);
+}
 /*******************************************************************************{ PAYMENTS }******/
 
 // validate sidepot inputs.
