@@ -81,6 +81,15 @@ kzzn.util.clearData = function(){
     kzzn.util.participantList_clear();
 }
 
+// check if string is in a correct JSON format.
+kzzn.util.isJsonString = function(json_str){
+    try {
+        JSON.parse(json_str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
 /***************************************************************************{ PARTICIPANTS }******/
 
 

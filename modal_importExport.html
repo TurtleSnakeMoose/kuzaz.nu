@@ -7,16 +7,22 @@
 		</div>
 
 		<div class="modal-body">
-
-			<textarea id='export_container' disabled></textarea>
-			<textarea id='import_container'></textarea> <button onclick="kzzn.importExport.import_jsonString()">import</button> 
-
+			<div>
+				<div>
+					<textarea id='export_container' disabled> </textarea>
+					<button id="btn_copy" class='btn btn-primary' onclick="kzzn.importExport.copy_jsonString()">COPY</button> 
+				</div>
+				<div>
+					<textarea id='import_container' oninput="kzzn.importExport.onInput_txtImport(event)"> </textarea>
+					<button id="btn_import" class='btn btn-primary' onclick="kzzn.importExport.import_jsonString()" disabled>IMPORT</button> 
+				</div>
+			</div>
 		</div>
 
 		<div class="modal-footer">
 				<textarea class="clipboard_container" id="importExport_clipboard_container" value=''></textarea> <!--this is used to store text when copying\sending via whatsapp-->
 			</div>
-			<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal">CLOSE</button>
 		</div>
 	</div>
 

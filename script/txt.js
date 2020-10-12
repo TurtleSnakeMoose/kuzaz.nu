@@ -34,7 +34,7 @@ var content = {
                             Remove a side pot by pressing the <i class="fas fa-trash"></i> icon.`
     },
     summary:{
-        additional_info: `  <strong>Contributions Summary.</strong><br/>
+        additional_info: `  <strong>Contributions Summary</strong><br/>
                             Mainpot and sidepot contributions, simplified breakdown.</br>
                             <br/>
                             Pushing <i class="fas fa-copy"></i> will copy this info to clipboard as plain text.<br/>
@@ -42,7 +42,7 @@ var content = {
                             Pushing <i class="fab fa-whatsapp"></i> will share this info as text straight to <i>whatsApp</i>.`
     },
     result:{
-        additional_info: `  <strong>Final results.</strong><br/>
+        additional_info: `  <strong>Final results</strong><br/>
                             Transactions were calculated in a way where it does'nt matter who gets paid by who,<br/>
                             As long as everyone breaks even.<br/>
                             <br/>
@@ -51,7 +51,17 @@ var content = {
                             Pushing <i class="fab fa-whatsapp"></i> will share this table as text straight to <i>whatsApp</i>.`
     },
     importExport:{
-        additional_info: `cykaBlyat`
+        additional_info: `  <strong>Import/Export</strong><br/>
+                            <br/>
+                            <strong>Export</strong><br/>
+                            Refreshing kuzaz.nu will reset the data you've worked on,<br/>
+                            To continue working on this later or to just review the data at a later time,<br/>
+                            Copy the text under "Export" and save it where it's accessible.<br/>
+                            <br/>
+                            <strong>Imoport</strong><br/>
+                            Paste the text you've exported into the textbox under "Import".<br/>
+                            If the text is valid, the "IMPORT" button will be enabled.<br/>
+                            Press the button and all the data you've started working on will magically reappear.<br/>`
     }
 }
 
