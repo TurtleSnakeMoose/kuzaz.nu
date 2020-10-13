@@ -8,19 +8,19 @@ kzzn.util.load_modals = function() {
         modal_importExport = $('#modal_importExport'),
         modal_result = $('#modal_result');
 
-    modal_payments.load("modal_payments.html");
+    modal_payments.load("modal/modal_payments.html");
     modal_payments.on('shown.bs.modal', function (e) { kzzn.payments.modal_loadParticipantData(e); });
     modal_payments.on('hide.bs.modal', function (e) { kzzn.payments.modal_updateParticipantData(e); });
 
-    modal_summary.load("modal_summary.html");
+    modal_summary.load("modal/modal_summary.html");
     modal_summary.on('shown.bs.modal', function (e) { kzzn.summary.modal_summary_onshown(e); });
     modal_summary.on('hide.bs.modal', function (e) { kzzn.summary.modal_summary_onClose(e); });
 
-    modal_result.load("modal_result.html");
+    modal_result.load("modal/modal_result.html");
     modal_result.on('shown.bs.modal', function (e) { kzzn.result.modal_result_onshown(e); })
     modal_result.on('hide.bs.modal', function (e) { kzzn.result.modal_result_onClose(e); })
 
-    modal_importExport.load("modal_importExport.html");
+    modal_importExport.load("modal/modal_importExport.html");
     modal_importExport.on('shown.bs.modal', function (e) { kzzn.importExport.modal_importExport_onshown(e); })
     modal_importExport.on('hide.bs.modal', function (e) { kzzn.importExport.modal_importExport_onClose(e); })
 }
