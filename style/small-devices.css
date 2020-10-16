@@ -1,4 +1,534 @@
 /* Small devices (phones, portrait tablets ) */
 @media only screen and (max-width: 992px){
+	
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ SHARED }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#content{
+    width: 100%;
+	display: flex;
+    flex-direction: column;
+}
+
+#page_container{
+	background: #F2C14E;
+    box-shadow: -2px 5px 20px 20px #0301004f;
+    width: 98%;
+    height: 90vh;
+    padding: 5px;
+}
+
+#logo_main{
+	z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -2px;
+    width: 98%;
+}
+
+.info_box .title {
+	font-size: 17px;
+	margin: 0;
+}
+.info_box .additional_info {
+	font-size: 18px;
+	margin: 0;
+}
+
+.fa-question-circle:before {
+	font-size: x-large;
+	margin: 0 15px;
+}
+
+.btn-primary{
+    font-size:12px;
+    padding: 3px 7px;
+}
+
+textarea{
+	resize: none;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+.section{
+    height: 100%;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.ten-p{
+	width: 10%;
+}
+
+.thirty-p{
+	width: 30%;
+}
+
+.popover-body{
+    font-size: 12px;
+}
+
+.divider{
+	border-bottom: 4px #f1e08c ridge;
+    width: 540px;
+    margin: 0 auto;
+}
+
+.btn-primary{
+	background-color: #5EB5CF;
+    border-color: #5EB5CF;
+}
+
+::-webkit-scrollbar-track
+{
+	background-color: #dcdddf;
+	height: 80%;
+}
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #dcdddf;
+}
+::-webkit-scrollbar-thumb
+{
+	background-color: #dcdddf;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, #a2c6cb));
+}
+
+.clipboard_container{
+	position: absolute;
+    bottom: 0;
+    left: 10000px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ PARTICIPANTS }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.info_box{
+    padding: 10px 20px;
+    line-height: 25px;
+    height: 8%;
+}
+
+#participant_inputs{
+    margin: 0 0 3px 0;
+    height: 8%;
+}
+
+#participant_inputs input{
+	text-align: center;
+	border-radius: 0;
+	background: #f8d37a;
+	border-color: #b3cd4a;
+}
+
+#participant_inputs #input_name{
+	width: 40%;
+}
+
+#participant_inputs button{
+	border-radius: 0;
+	background: #f8d37a;
+	border-color: #b3cd4a;
+}
+
+#participant_list{
+    max-height: 69vh;
+    overflow: auto;
+    margin-bottom: 0;
+    height: 76%;
+}
+
+
+#participant_list table{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#participant_list table td{
+	padding: 5px;
+	border: 0;
+}
+
+#participant_list table td .fa:before{
+	font-size: 20px !important;
+}
+
+#participant_list table thead{
+	font-size: 16px;
+    font-weight: bold;
+}
+
+#participant_list table tbody{
+	font-size: 18px;
+}
+
+#participant_list table tbody tr:hover{
+	background: #f4cc6e;
+}
+
+#participant_summary{
+	display: flex;
+    justify-content: space-between;
+    height: 6%;
+}
+
+#participant_summary .div_buttons{
+    align-self: center;
+}
+
+#participant_summary .div_buttons i{
+	font-size: 22px !important;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 6px;
+}
+
+#participant_summary .div_lbl{
+    align-self: center;
+    width: 40%;
+    margin-top: 18px;
+}
+
+#participant_summary label{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ SHARED MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.modal_divider{
+	width: 100%;
+    border-bottom: 4px groove #5eb5cf8a;
+}
+
+.modal-header{
+	padding: 10px;
+    border: 0;
+}
+
+.modal-content .fa-question-circle{
+	position: absolute;
+    top: 12px;
+    right: 0px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ PAYMENTS MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#modal_payments input[type=number]::-webkit-inner-spin-button, 
+#modal_payments input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+#modal_payments #modal_title{
+    font-weight: bold;
+    font-size: 18px;
+}
+#modal_payments .modal-content{
+	background-color: #F2C14E;
+}
+#modal_payments .modal-body{
+	font-weight: bold;
+	padding: 0 10px;
+}
+#modal_payments .modal-footer{
+	border: 0;
+	padding: 10px
+}
+
+#modal_payments .modal-body .form-row{
+	margin:10px 0;
+}
+#modal_payments .modal-body .form-row span{
+    padding-top: 7px;
+}
+#modal_payments .modal-body input, #modal_payments .modal-body select
+{
+	text-align: center;
+    border-radius: 0;
+    background: #f8d37a;
+    border-color: #b3cd4a;
+}
+#modal_payments .modal-body #payment_mainPot_span{
+    text-align: center;
+}
+#modal_payments .modal-body #payment_mainPot_amount{
+    text-align: center;
+}
+#modal_payments .modal-body .div_sidepot .row{
+    margin: 0;
+}
+#modal_payments .modal-body .div_sidepot .row:first-child{
+    margin:5px 0;
+}
+#modal_payments .modal-body .div_addToSidePot{
+	display: block;
+	text-align: end;
+}
+#modal_payments .modal-body .div_addToSidePot button{
+	height: 25px;
+	padding: 0px 10px;
+}
+
+#modal_payments .dashboardcode-bsmultiselect .badge{
+	margin-right: 5px;
+	margin-top: 2px;
+	font-size: 13px;
+	padding: 0;
+	border: 1px solid #5eb5cf;
+	height: 22px;
+	background: #f2c14e;
+}
+#modal_payments .dashboardcode-bsmultiselect .badge > span{
+	margin-left: 3px;
+}
+#modal_payments .dashboardcode-bsmultiselect .badge .close{
+	margin: 0 5px;
+}
+#modal_payments .dashboardcode-bsmultiselect ul.form-control{
+	background: #f8d37a;
+    border-radius: 0;
+	border-color: #b3cd4a;
+    padding: 4px;
+    max-height: 59px;
+    overflow-y: auto;
+}
+#modal_payments .dashboardcode-bsmultiselect .dropdown-menu li{
+	margin: 10px;
+}
+#modal_payments .dashboardcode-bsmultiselect .dropdown-menu li,
+#modal_payments .dashboardcode-bsmultiselect .dropdown-menu li * {
+	cursor: pointer;
+}
+
+#modal_payments #sidepot_list{
+    max-height: 44vh;
+    overflow: auto;
+}
+
+#modal_payments table{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#modal_payments table td{
+	padding: 5px;
+	border: 0;
+}
+
+#modal_payments table td .fa:before{
+	font-size: 20px !important;
+}
+
+#modal_payments table tbody{
+	font-size: 15px;
+}
+
+#modal_payments table tbody tr:hover{
+	background: #f4cc6e;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ SUMMARY MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#modal_participant_summary .modal-content{
+	background-color: #F2C14E;
+}
+
+#modal_participant_summary .modal-body{
+	padding: 0 10px;
+}
+#modal_participant_summary .modal-body .span_contribs{
+	font-weight: bold;
+	text-decoration: underline;
+}
+#modal_participant_summary .modal-body #mainpot_calc_summary {
+	margin-bottom: 10px;
+}
+#modal_participant_summary .modal-body #ul_sidepots_contrib li{
+	margin-bottom: 10px;
+}
+#modal_participant_summary .modal-body h4{
+	text-align: center;
+	font-weight: bold;
+    margin-top: 12px;
+    font-size: 17px;
+}
+#modal_participant_summary .modal-body ul{
+	list-style: none;
+}
+#modal_participant_summary .modal-body .div_pot_info{
+	background: #f4cc6e;
+	padding: 5px 15px;
+	max-height: 33vh;
+	overflow-y: auto;
+	margin: 10px 0;
+	border-radius: 10px;
+}
+#modal_participant_summary .modal-footer{
+	border: 0;
+	padding: 10px
+}
+#modal_participant_summary .modal-footer{
+	border: 0;
+	padding: 10px
+}
+#modal_participant_summary .modal-footer .fa-whatsapp:before{
+	font-size: 22px;
+	margin: 0 5px;
+}
+#modal_participant_summary .modal-footer .fa-whatsapp:link {
+    text-decoration: inherit;
+    color: inherit;
+}
+#modal_participant_summary .modal-footer .fa-whatsapp:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
+#modal_participant_summary .modal-footer .fa-copy:before{
+	font-size: 20px;
+	margin: 0 5px;
+}
+#modal_participant_summary .modal-footer #div_icons{
+	margin: 0 15px;
+}
+
+#modal_participant_summary .toast_container {
+	position: absolute;
+    bottom: -10px;
+    right: 41px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ RESULT MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#modal_result .modal-content{
+	background-color: #F2C14E;
+}
+#modal_result .modal-body{
+	padding: 0 10px;
+}
+#modal_result .modal-body h4{
+	text-align: center;
+	font-weight: bold;
+	margin-top: 12px;
+}
+#modal_result .modal-body #transactions_list{
+	text-align: center;
+	max-height: 77vh;
+    overflow-y: auto;
+}
+#modal_result .modal-body #transactions_list table{
+	margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+#modal_result .modal-body #transactions_list table td{
+	border: 0;
+	position: relative;
+}
+#modal_result .modal-body #transactions_list table td i.fa-arrow-right{
+	position: absolute;
+    right: -9px;
+    bottom: 15px;
+}
+#modal_result .modal-body #transactions_list table td i.fa-hand-holding-usd{
+	position: absolute;
+    right: -10px;
+    bottom: 19px;
+}
+#modal_result .modal-footer{
+	border: 0;
+	padding: 10px
+}
+#modal_result .modal-footer .fa-whatsapp:before{
+	font-size: 22px;
+	margin: 0 5px;
+}
+#modal_result .modal-footer .fa-whatsapp:link {
+    text-decoration: inherit;
+    color: inherit;
+}
+#modal_result .modal-footer .fa-whatsapp:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
+#modal_result .modal-footer .fa-copy:before{
+	font-size: 20px;
+	margin: 0 5px;
+}
+#modal_result .modal-footer #div_icons{
+	margin: 0 15px;
+}
+
+#modal_result .toast_container {
+	position: absolute;
+    bottom: -10px;
+    right: 41px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ IMPORT EXPORT MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#modal_importExport{
+	top: 12vh;
+}
+#modal_importExport .modal-content{
+	background-color: #F2C14E;
+}
+#modal_importExport .modal-body{
+	padding: 0 10px;
+}
+#modal_importExport .modal-body .toast_container{
+	min-height: 0 !important;
+	
+}
+#modal_importExport .modal-body #div_toast_importExport{
+	bottom: 40px;
+    left: 40px;
+	position: absolute;
+}
+#modal_importExport .modal-body .modal_divider{
+	margin: 15px 0;
+}
+#modal_importExport .modal-body h4{
+	text-align: center;
+	font-weight: bold;
+	margin-top: 12px;
+}
+#modal_importExport .modal-body .importExport_section{
+	background: #f4cc6e;
+	padding: 10px;
+	max-height: 35vh;
+	overflow-y: auto;
+	border-radius: 10px;
+	position: relative;
+}
+#modal_importExport .modal-body .importExport_section_content{
+	display: flex;
+}
+#modal_importExport .modal-body .importExport_section_content textarea{
+	height: 15vh;
+    width: 65vw;
+    border-radius: 0;
+    background: #ffeec4;
+    border-color: #b3cd4a;
+}
+#modal_importExport .modal-body .importExport_section_content textarea[disabled='true']{
+    background: #e1e0ba;
+    border-color: #b3cd4a;
+}
+#modal_importExport .modal-body .importExport_section_content button{
+	margin-right: auto;
+    margin-left: auto;
+    height: fit-content;
+    align-self: center;
+}
+#modal_importExport .modal-footer{
+	border: 0;
+    padding: 10px;
+}
 }

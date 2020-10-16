@@ -34,7 +34,7 @@ kzzn.util.initComponents = function () {
     $("#multiselect_participant").bsMultiSelect({
         placeholder: 'Select participants'
     });
-    $('.dashboardcode-bsmultiselect').addClass('col-md-6');
+    $('.dashboardcode-bsmultiselect').addClass('col-md-6 col-10');
 
     //bootstrap toast.
     $('.toast').toast();

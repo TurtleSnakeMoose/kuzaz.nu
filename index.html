@@ -38,78 +38,76 @@
 	</head>
 	
 	<body class="ltr">
-
-		<div id="page_container" class="container-fluid">
+		<div id="content"> 
 			<img id="logo_main" src="assets/logo/logo_kuzaznu.svg">
 
-<!---------------------------------------------------------------------------------- {{ PARTICIPANT }} --->			
+			<div id="page_container" class="container-fluid">
 
-			<div id="section_participants" class="section" data-section-for="participants">
+				<!---------------------------------------------------------------------------------- {{ PARTICIPANT }} --->			
+				<div id="section_participants" class="section" data-section-for="participants">
 
-				<div class="info_box">
-					<label class="bold title">PARTICIPANT LIST</label>
-					<i tabindex="0" class="fas fa-question-circle pointer additional_info" data-for="section_participants" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
-				</div>
+					<div class="info_box">
+						<label class="bold title">PARTICIPANT LIST</label>
+						<i tabindex="0" class="fas fa-question-circle pointer additional_info" data-for="section_participants" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
+					</div>
 
-				<div id="participant_inputs">
-					<div class="input-group">
-						<input id="input_name" placeholder="Name" type="text" maxlength="20" class="form-control">
-						<input id="input_count" placeholder="Count" type="number" min="1" max="30" class="form-control">
-						<div class="input-group-append btn_add" onclick="kzzn.participants.addParticipant(this)">
-							<button class="btn btn-outline-secondary" type="button"><i tabindex="0" class="fas fa-plus"></i></button>
+					<div id="participant_inputs">
+						<div class="input-group">
+							<input id="input_name" placeholder="Name" type="text" maxlength="20" class="form-control">
+							<input id="input_count" placeholder="Count" type="number" min="1" max="30" class="form-control">
+							<div class="input-group-append btn_add" onclick="kzzn.participants.addParticipant(this)">
+								<button class="btn btn-outline-secondary" type="button"><i tabindex="0" class="fas fa-plus"></i></button>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div id="participant_list" class="table">
-					<table class="hidden">
-						<thead>
-							<tr>
-								<td>#</td><td>Name</td><td>Count</td>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-				</div>
-
-				<div id="participant_summary">
-					<div class="div_lbl">
-						<label></label>
+					<div id="participant_list" class="table">
+						<table class="hidden">
+							<thead>
+								<tr>
+									<td>#</td><td>Name</td><td>Count</td>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
 					</div>
-					<div class="div_buttons">
-						<i class="fas fa-archive pointer" title="Import / export data" onclick="kzzn.importExport.openImportExportModal()"></i>
-						<button type="button" id="btn_summary" class="btn btn-primary" disabled onclick="kzzn.summary.openSummaryModal()">SUMMARY</button>
-						<button type="button" id="btn_calculate" class="btn btn-primary" disabled onclick="kzzn.result.openResultModal()">CALCULATE</button>
+
+					<div id="participant_summary">
+						<div class="div_lbl">
+							<label></label>
+						</div>
+						<div class="div_buttons">
+							<i class="fas fa-archive pointer" title="Import / export data" onclick="kzzn.importExport.openImportExportModal()"></i>
+							<button type="button" id="btn_summary" class="btn btn-primary" disabled onclick="kzzn.summary.openSummaryModal()">SUMMARY</button>
+							<button type="button" id="btn_calculate" class="btn btn-primary" disabled onclick="kzzn.result.openResultModal()">CALCULATE</button>
+						</div>
 					</div>
+
 				</div>
 
+				<!---------------------------------------------------------------{{ PARTICIPANT PAYMENTS MODAL }}-------->
+
+				<div class="modal fade" id="modal_payments" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="paymentsModal" aria-hidden="true"></div>
+
+				<!------------------------------------------------------------------{{ PARTICIPANT PAYMENTS MODAL }}-------->
+
+				<div class="modal fade" id="modal_participant_summary" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="summaryModal" aria-hidden="true"></div>	
+				
+				<!------------------------------------------------------------------{{ RESULTS MODAL }}-------->
+
+				<div class="modal fade" id="modal_result" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="resultModal" aria-hidden="true"></div>	
+
+				<!------------------------------------------------------------------{{ IMPORT EXPORT MODAL }}-------->
+
+				<div class="modal fade" id="modal_importExport" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="importExportModal" aria-hidden="true"></div>	
+
+				<!------------------------------------------------------------------------------------ {{ RESULT }} -------->	
+
+				<div id="section_result" class="section hidden" data-section-for="result"></div>
+
+				<!--------------------------------------------------------------------------------------------------->
 			</div>
-
-<!---------------------------------------------------------------{{ PARTICIPANT PAYMENTS MODAL }}-------->
-
-			<div class="modal fade" id="modal_payments" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="paymentsModal" aria-hidden="true"></div>
-
-<!------------------------------------------------------------------{{ PARTICIPANT PAYMENTS MODAL }}-------->
-
-			<div class="modal fade" id="modal_participant_summary" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="summaryModal" aria-hidden="true"></div>	
-			
-<!------------------------------------------------------------------{{ RESULTS MODAL }}-------->
-
-			<div class="modal fade" id="modal_result" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="resultModal" aria-hidden="true"></div>	
-
-<!------------------------------------------------------------------{{ IMPORT EXPORT MODAL }}-------->
-
-			<div class="modal fade" id="modal_importExport" data-modal-for="" tabindex="-1" role="dialog" aria-labelledby="importExportModal" aria-hidden="true"></div>	
-
-<!------------------------------------------------------------------------------------ {{ RESULT }} -------->	
-
-			<div id="section_result" class="section hidden" data-section-for="result"></div>
-
-<!--------------------------------------------------------------------------------------------------->
 		</div>
-
-<!--------------------------------------------------------------------------------------------------->		
-
 	</body>
 </html>
