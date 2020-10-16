@@ -104,6 +104,10 @@ kzzn.data.loadHardCodedDataByName = function (tbody, groupName) {
 
 kzzn.data.loadParticipantData = function(tbody, data){
     $.each(data, function (i, item){
+
+        if(!kzzn.util.participantList_validateRow(tbody, item.name, item.count)) // validate data before adding, skip duplicates.
+            return;
+
         kzzn.util.participantList_addRow(tbody, item.name, item.count);
         kzzn.data.add_participant({Name: item.name, Count: item.count, MainPot: item.mainpot, SidePots: item.sidepots});
     });

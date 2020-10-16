@@ -2,40 +2,53 @@
 	<div class="modal-content">
 		
 		<div class='modal-header'>
-			<h5>Import \ Export data</h5>
+			<h4>Import \ Export data</h4>
 			<i tabindex="0" class="fas fa-question-circle pointer additional_info" data-for="modal_importExport" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
 		</div>
 
 		<div class="modal-body">
 			<div>
-				<div>
-					<textarea id='export_container' disabled> </textarea>
-					<button id="btn_copy" class='btn btn-primary' onclick="kzzn.importExport.copy_jsonString()">COPY</button> 
+
+				<div class='importExport_section'>
+					<h5>Export</h5>
+					<div class="importExport_section_content">
+						<textarea id='export_container' disabled='true'> </textarea>
+						<button id="btn_copy" class='btn btn-primary' onclick="kzzn.importExport.copy_jsonString()">COPY</button> 
+					</div>
+
+					<!--------------------------------------------------------------------------------{{ TOAST }}-------->
+					<!-- Flexbox container for aligning the toasts -->
+					<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center toast_container" style="min-height: 200px;">
+						<!-- Then put toasts within -->
+						<div id="div_toast_importExport" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+							<div class="toast-body">
+								data copied as text to clipboard!
+							</div>
+						</div>
+					</div>
+					<!---------------------------------------------------------------------------------------------------->
+
 				</div>
-				<div>
-					<textarea id='import_container' oninput="kzzn.importExport.onInput_txtImport(event)"> </textarea>
-					<button id="btn_import" class='btn btn-primary' onclick="kzzn.importExport.import_jsonString()" disabled>IMPORT</button> 
+
+				<div class="modal_divider"></div>
+				
+				<div class='importExport_section'>
+					<h5>Import</h5>
+					<div class="importExport_section_content">
+						<textarea id='import_container' oninput="kzzn.importExport.onInput_txtImport(event)"> </textarea>
+						<button id="btn_import" class='btn btn-primary' onclick="kzzn.importExport.import_jsonString()" disabled>IMPORT</button> 
+					</div>
 				</div>
+
 			</div>
 		</div>
+		
+		<div class="modal_divider"></div>
 
 		<div class="modal-footer">
-				<textarea class="clipboard_container" id="importExport_clipboard_container" value=''></textarea> <!--this is used to store text when copying\sending via whatsapp-->
-			</div>
+			<textarea class="clipboard_container" id="importExport_clipboard_container" value=''></textarea> <!--this is used to store text when copying\sending via whatsapp-->
 			<button type="button" class="btn btn-primary" data-dismiss="modal">CLOSE</button>
 		</div>
-	</div>
 
-<!--------------------------------------------------------------------------------{{ TOAST }}-------->
-	<!-- Flexbox container for aligning the toasts -->
-	<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center toast_container" style="min-height: 200px;">
-		<!-- Then put toasts within -->
-		<div id="div_toast_importExport" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-			<div class="toast-body">
-				data copied as text to clipboard!
-			</div>
-		</div>
 	</div>
-<!---------------------------------------------------------------------------------------------------->
-
 </div>

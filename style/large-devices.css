@@ -38,6 +38,10 @@
 	margin: 0 15px;
 }
 
+textarea{
+	resize: none;
+}
+
 .pointer{
 	cursor: pointer;
 }
@@ -166,6 +170,10 @@
     text-align: center;
     vertical-align: middle;
     margin: 0 6px;
+}
+
+#participant_summary .div_lbl{
+	align-self: center;
 }
 
 #participant_summary label{
@@ -315,7 +323,7 @@
 #modal_participant_summary .modal-body #ul_sidepots_contrib li{
 	margin-bottom: 10px;
 }
-#modal_participant_summary .modal-body h5{
+#modal_participant_summary .modal-body h4{
 	text-align: center;
 	font-weight: bold;
 	margin-top: 12px;
@@ -373,7 +381,7 @@
 #modal_result .modal-body{
 	padding: 0 10px;
 }
-#modal_result .modal-body h5{
+#modal_result .modal-body h4{
 	text-align: center;
 	font-weight: bold;
 	margin-top: 12px;
@@ -432,18 +440,68 @@
     right: 41px;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ RESULT MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ IMPORT EXPORT MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#modal_importExport{
+	top: 12vh;
+}
 #modal_importExport .modal-content{
 	background-color: #F2C14E;
 }
 #modal_importExport .modal-body{
 	padding: 0 10px;
 }
-#modal_importExport .modal-body h5{
+#modal_importExport .modal-body .toast_container{
+	min-height: 0 !important;
+	
+}
+#modal_importExport .modal-body #div_toast_importExport{
+	bottom: 40px;
+    left: 40px;
+	position: absolute;
+}
+#modal_importExport .modal-body .modal_divider{
+	margin: 15px 0;
+}
+#modal_importExport .modal-body h4{
 	text-align: center;
 	font-weight: bold;
 	margin-top: 12px;
 }
+#modal_importExport .modal-body .importExport_section{
+	background: #f4cc6e;
+	padding: 10px 15px;
+	max-height: 35vh;
+	overflow-y: auto;
+	border-radius: 10px;
+	position: relative;
+}
+#modal_importExport .modal-body .importExport_section_content{
+	display: flex;
+}
+#modal_importExport .modal-body .importExport_section_content textarea{
+	height: 110px;
+	width: 340px;
+    border-radius: 0;
+    background: #ffeec4;
+    border-color: #b3cd4a;
+}
+#modal_importExport .modal-body .importExport_section_content textarea[disabled='true']{
+    background: #e1e0ba;
+    border-color: #b3cd4a;
+}
+#modal_importExport .modal-body .importExport_section_content button{
+	margin-right: auto;
+    margin-left: auto;
+    height: fit-content;
+    align-self: center;
+}
+#modal_importExport .modal-footer{
+	border: 0;
+    padding: 10px;
+}
+
+
+
 
 }

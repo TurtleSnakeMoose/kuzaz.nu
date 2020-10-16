@@ -16,7 +16,11 @@ var content = {
                             Do so, using the <i class="fas fa-plus-circle"></i>, <i class="fas fa-minus-circle"></i> and <i class="fas fa-trash"></i> icons.</br>
                             <br />
                             <strong> Don't forget to specify each participant's payments - mainpot and/or sidepots.</strong></br>
-                            Setup the parcipants's contributions by clicking the <i class="fas fa-shekel-sign"></i> icon.`
+                            Setup the parcipants's contributions by clicking the <i class="fas fa-shekel-sign"></i> icon.<br />
+                            <br />
+                            Click on "<strong>SUMMARY</strong>" to show... well... The summary...<br/>
+                            <br />
+                            Click on "<strong>CALCULATE</strong>", The reason you're here. Calculate the money distribution between participants so everyone breaks even. <br/>`
     },
     payments:{
         additional_info: `  Expenses are split into 2 catagories: "Main pot" and "Side pot".<br />

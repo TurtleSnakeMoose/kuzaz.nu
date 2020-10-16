@@ -77,7 +77,7 @@ kzzn.util.setStatus_ActionButtons = function(){
 
 // clear the participant data object and clear the participant table list.
 kzzn.util.clearData = function(){
-    kzzn.data.participants_data = [{}];
+    kzzn.data.participants_data = [];
     kzzn.util.participantList_clear();
 }
 
@@ -96,9 +96,9 @@ kzzn.util.isJsonString = function(json_str){
 // validate participant input before adding to table.
 kzzn.util.participantList_validateRow = function (tbody, name, count){
     let participantRows = tbody.find('tr'),
-    parsedCount = parseInt(count || 0),
-    names = participantRows.find('td[col-for="name"]'),
-    isValid = true;
+        parsedCount = parseInt(count || 0),
+        names = participantRows.find('td[col-for="name"]'),
+        isValid = true;
     
         if(name.length <= 0 || parsedCount < 0 || parsedCount > 30)
             isValid = false;
