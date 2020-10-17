@@ -42,6 +42,9 @@ kzzn.importExport.import_jsonString = function(btn){
     // load the imported data.
     kzzn.data.loadParticipantData(tbody, parsed_data);
 
+    // enable/disable buttons.
+    kzzn.util.setStatus_ActionButtons();
+
     // close modal after copying.
     modal.modal('hide');
 }

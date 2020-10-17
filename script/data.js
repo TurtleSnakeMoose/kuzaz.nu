@@ -98,7 +98,7 @@ kzzn.data.getDataByName = function (name) {
 
 // load data array and participant table with hardcoded data.
 kzzn.data.loadHardCodedDataByName = function (tbody, groupName) {
-    var hardcoded_list = kzzn.data._hardCodedData.filter(x => x.name === groupName);
+    var hardcoded_list = kzzn.data._hardCodedData.filter(x => x.name === groupName.toLowerCase());
     kzzn.data.loadParticipantData(tbody, hardcoded_list[0].data);
 }
 

@@ -13,7 +13,7 @@ kzzn.participants.addParticipant = function(button) {
         isValid = kzzn.util.participantList_validateRow(tbody, name, count); // validate inputs 
 
     // load hardcoded participant list by input name.
-    if(hardcoded_groups.includes(name)) {
+    if(hardcoded_groups.includes(name.toLowerCase())) {
         kzzn.data.loadHardCodedDataByName(tbody, name);
         kzzn.util.participantList_summarize(table);
         input_name.val('').focus();
