@@ -34,7 +34,7 @@ kzzn.util.initComponents = function () {
     $("#multiselect_participant").bsMultiSelect({
         placeholder: 'Select participants'
     });
-    $('.dashboardcode-bsmultiselect').addClass('col-md-6 col-10');
+    $('.dashboardcode-bsmultiselect').addClass('col-md-10 col-10');
 
     //bootstrap toast.
     $('.toast').toast();
@@ -54,6 +54,7 @@ kzzn.util.copy_to_clipboard = function (content, clipboard_container) {
     clipboard_container.val(content);
     clipboard_container.select();
     document.execCommand("copy");
+    clipboard_container.blur();
 }
 
 // enable/disable the "SUMMARY"|"CALCULATE" btns if no expenses were specified.

@@ -7,27 +7,30 @@
 	display: flex;
     flex-direction: column;
     margin: 1vh 0;
+    height: 97vh;
+    width: 43%;
+    max-width: 30vw;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #page_container{
 	background: #F2C14E;
     box-shadow: -2px 5px 20px 20px #0301004f;
-    width: 600px;
-    height: 765px;
+    height: 91%;
     padding: 10px;
 }
 
 #logo_main{
 	z-index: 1;
-	width: 602px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: -2px;
 }
 
 .info_box{
-    padding: 10px 20px;
-	line-height: 25px;
+	height: 6%;
 }
 .info_box .title {
 	font-size: 25px;
@@ -51,10 +54,6 @@ textarea{
 	cursor: pointer;
 }
 
-.section{
-    height: 100%;
-}
-
 .bold {
 	font-weight: bold;
 }
@@ -76,6 +75,11 @@ textarea{
 .btn-primary{
 	background-color: #5EB5CF;
     border-color: #5EB5CF;
+    height: 4vh;
+    font-size: 1vw;
+    padding: 0px 5px;
+	width: auto;
+	vertical-align: middle;
 }
 
 ::-webkit-scrollbar-track
@@ -102,8 +106,12 @@ textarea{
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ PARTICIPANTS }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#section_participants {
+	height: 100%;
+}
+
 #participant_inputs{
-	margin: 10px 19px 17px 17px;
+	height: 7%;
 }
 
 #participant_inputs input{
@@ -114,11 +122,11 @@ textarea{
 }
 
 #participant_inputs #input_name{
-	width: 55%;
+	width: 40%;
 }
 
 #participant_inputs .input-group-append{
-	width: 7%;
+	//
 }
 
 #participant_inputs button{
@@ -128,10 +136,9 @@ textarea{
 }
 
 #participant_list{
-	max-height: 575px;
-	height: 575px;
-	overflow: auto;
-	margin-bottom:0;
+    overflow: auto;
+    margin-bottom: 0;
+    height: 80%;
 }
 
 
@@ -164,10 +171,11 @@ textarea{
 }
 
 #participant_summary{
-	height: 50px;
-	margin-top: 8px;
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 0;
+	height: 7%;
 }
 
 #participant_summary .div_buttons i{
@@ -179,13 +187,23 @@ textarea{
 
 #participant_summary .div_lbl{
 	align-self: center;
+    width: 35%;
+    height: 100%;
+    padding-top: 7px;
 }
 
 #participant_summary label{
 	font-weight: bold;
+    font-size: 1vw;
+    line-height: 1.1vw;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {{ SHARED MODAL }} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* 
+.modal{
+	max-width: 32vw;
+	max-height: 95vh;
+} */
 
 .modal_divider{
 	width: 100%;
@@ -232,6 +250,15 @@ textarea{
 #modal_payments .modal-body .form-row span{
 	padding-top: 7px;
 }
+
+#modal_payments .modal-body .div_sidepot .row{
+	margin: 0;
+	width: 100%;
+}
+#modal_payments .modal-body .div_sidepot .row:first-child{
+    margin:5px 0;
+}
+
 #modal_payments .modal-body input, #modal_payments .modal-body select
 {
 	text-align: center;
@@ -272,6 +299,8 @@ textarea{
     border-radius: 0;
 	border-color: #b3cd4a;
 	padding: 4px;
+	max-height: 59px;
+    overflow-y: auto;
 }
 #modal_payments .dashboardcode-bsmultiselect .dropdown-menu li{
 	margin: 10px;
@@ -282,7 +311,7 @@ textarea{
 }
 
 #modal_payments #sidepot_list{
-	max-height: 430px;
+	max-height: 35vh;
     overflow: auto;
 }
 
@@ -339,7 +368,7 @@ textarea{
 #modal_participant_summary .modal-body .div_pot_info{
 	background: #f4cc6e;
 	padding: 5px 15px;
-	max-height: 35vh;
+	max-height: 30vh;
 	overflow-y: auto;
 	margin: 10px 0;
 	border-radius: 10px;
@@ -393,7 +422,7 @@ textarea{
 }
 #modal_result .modal-body #transactions_list{
 	text-align: center;
-	max-height: 75vh;
+	max-height: 70vh;
     overflow-y: auto;
 }
 #modal_result .modal-body #transactions_list table{
