@@ -56,10 +56,10 @@ kzzn.payments.modal_updateParticipantData = function(event) {
         sidepots.push({amount: amount_sidepot, participants: participants_sidepot});
     });
 
-    let dataToSave = {name:targetName, mainpot:amount_mainpot, sidepots: sidepots};
+    let dataToSave = {name:targetName, mainpot:amount_mainpot || 0, sidepots: sidepots};
     
     kzzn.data.save_participantPaymentData(dataToSave);
-
+    
     
     // clear input and table
     sidepot_rows.remove();

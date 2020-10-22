@@ -14,32 +14,7 @@ kzzn.summary.openSummaryModal = function (e) {
 kzzn.summary.modal_summary_onshown = function (e) {
     let modal = $(e.target),
         data = kzzn.data.getAll(),
-        participant_count = 0,
-        mainpot_sum = 0,
-        mainpot_contributors = [],
-        sidepot_contributors = [],
-        summaryData = {},
         btn_whatsapp = modal.find('.fa-whatsapp');
-
-    $.each(data, function(index, payer){
-
-        participant_count += payer.count;
-
-        if(payer.mainpot > 0){
-            mainpot_sum += payer.mainpot;
-            mainpot_contributors.push(payer);
-        }
-
-        if(payer.sidepots.length > 0)
-            sidepot_contributors.push(payer);
-    });
-
-    summaryData = {
-        pCount: participant_count,
-        mainpot_contribs: mainpot_contributors,
-        mainpot_sum: mainpot_sum,
-        sidepot_contribs: sidepot_contributors
-    }
 
     display_mainpot_info(modal, data);
     display_sidepots_info(modal, data);
