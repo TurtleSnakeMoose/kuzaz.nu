@@ -30,11 +30,15 @@ kzzn.payments.editParticipantPayments = function(button) {
 kzzn.payments.modal_loadParticipantData = function(event) {
     let modal = $(event.currentTarget),
         modal_title = modal.find('#modal_title'),
+        currentLanguage = kzzn.util.getCurrentLanguage(),
         target_participant = $(event.target).attr('data-modal-for'),
         target_data = kzzn.data.getDataByName(target_participant);
 
-    modal_title.text(`Expenses paid by ${target_participant}`);
-
+    if (currentLanguage === 'english')
+        modal_title.text(`Expenses paid by ${target_participant}`);
+    else if (currentLanguage === 'hebrew')
+        modal_title.text(`הוצאות ששולמו ע"י ${target_participant}`);
+    
     if(target_data.length > 0)
         fillModalData(modal, target_data[0]);
 }
