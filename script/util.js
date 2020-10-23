@@ -91,6 +91,10 @@ kzzn.util.isJsonString = function(json_str){
     }
     return true;
 }
+
+kzzn.util.getCurrentLanguage = function() {
+    return $('body').data('language');
+}
 /***************************************************************************{ PARTICIPANTS }******/
 
 
@@ -157,14 +161,19 @@ kzzn.util.participantList_summarize = function (table){
     var lbl_participantSummary = $('#participant_summary label'),
         payersRows = $(table).find('tbody tr'),
         payerCount = 0,
-        participantCount = 0;
-    
+        participantCount = 0,
+        currentLanguage = kzzn.util.getCurrentLanguage();
+
         $.each(payersRows, function(index, item){
             payerCount++;
             participantCount += parseInt($(this).find('.p_count').text());
         });
 
-    lbl_participantSummary.text(payerCount>0 ? `${payerCount} payers for ${participantCount} participants.` : '');
+    if (currentLanguage === 'hebrew') 
+        lbl_participantSummary.text(payerCount>0 ? `${payerCount} משלמים עבור ${participantCount} משתתפים.` : '');
+        
+    else if (currentLanguage === 'english') 
+        lbl_participantSummary.text(payerCount>0 ? `${payerCount} payers for ${participantCount} participants.` : '');
 }
 
 // remove participant table row.
@@ -178,7 +187,7 @@ kzzn.util.participantList_removeRow = function (row, table){
         $(table).addClass('hidden');
 
     $.each(remainingRows, function(index, item){
-        $(item).children()[0].textContent = index+1
+        $(item).children()[0].textContent = index+1;
     });
 
 }
@@ -235,6 +244,7 @@ kzzn.util.sidePotList_removeRow = function (row, table){
 
 kzzn.util.buildSummaryAsText = function (data){
     let str_result = '',
+        currentLanguage = kzzn.util.getCurrentLanguage(),
         mainpot_payers = data.filter(p => p.mainpot > 0),
         sidepot_payers = data.filter(p => p.sidepots.length > 0),
         payer_count = data.length,
@@ -242,18 +252,38 @@ kzzn.util.buildSummaryAsText = function (data){
         mainpot_sum = data.reduce((total, current) => total + current.mainpot, 0);
 
     if (mainpot_payers.length > 0) {
-        str_result += `*----{ MAIN POT }----*\r\n\r\n`;
+
+        if (currentLanguage === 'english')
+            str_result += `*----{ MAIN POT }----*\r\n\r\n`;
+        else if (currentLanguage === 'hebrew')
+            str_result += `*----{ קופה ראשית }----*\r\n\r\n`;
+
         $.each(mainpot_payers, function (i, payer) { 
-            str_result += `*${payer.name}* paid *${payer.mainpot}*\r\n`;
+            if (currentLanguage === 'english')
+                str_result += `*${payer.name}* paid *${payer.mainpot}*\r\n`;
+            else if (currentLanguage === 'hebrew')
+                    str_result += `*${payer.name}* שילם *${payer.mainpot}*\r\n`;
         });
-        str_result += `\r\nOverall a sum of *${mainpot_sum}* was collected by *${payer_count} payers* for the mainpot.\r\nThis amount is to be split evenly between *${participant_count} participants*\r\n,Which comes to *${Math.round(mainpot_sum/participant_count)}* each.\r\n\r\n`;        
+
+        if (currentLanguage === 'english')
+            str_result += `\r\nOverall a sum of *${mainpot_sum}* was collected by *${payer_count} payers* for the mainpot.\r\nThis amount is to be split evenly between *${participant_count} participants*\r\n,Which comes to *${Math.round(mainpot_sum/participant_count)}* each.\r\n\r\n`;        
+        else if (currentLanguage === 'hebrew')
+            str_result += `\r\nסה"כ *${mainpot_sum}* שולם ע"י *${payer_count} משתתפים* לקופה הראשית.\r\nהסכום הזה מחולק בין *${participant_count} משתתפים*\r\n,מה שמביא אותנו ל *${Math.round(mainpot_sum/participant_count)}* כל אחד.\r\n\r\n`;        
     }
 
     if (sidepot_payers.length > 0) {
-        str_result += `*----{ SIDE POTS }----*\r\n\r\n`;
+
+        if (currentLanguage === 'english')
+            str_result += `*----{ SIDE POTS }----*\r\n\r\n`;
+        else if (currentLanguage === 'hebrew')
+            str_result += `*----{קופות צדדיות }----*\r\n\r\n`;
+
         $.each(sidepot_payers, function (i, payer) { 
             $.each(payer.sidepots, function (i, sidepot) { 
-                str_result += `*${payer.name}* paid *${sidepot.amount}* for:\r\n*${sidepot.participants.join(', ')}*.\r\nWhich comes to *${Math.round(sidepot.amount/sidepot.participants.length)} each*.\r\n\r\n`;
+                if (currentLanguage === 'english')
+                    str_result += `*${payer.name}* paid *${sidepot.amount}* for:\r\n*${sidepot.participants.join(', ')}*.\r\nWhich comes to *${Math.round(sidepot.amount/sidepot.participants.length)} each*.\r\n\r\n`;
+                else if (currentLanguage === 'hebrew')
+                    str_result += `*${payer.name}* שילמ/ה *${sidepot.amount}* עבור:\r\n*${sidepot.participants.join(', ')}*.\r\nמה שמביא אותם ל *${Math.round(sidepot.amount/sidepot.participants.length)} כל אחד*.\r\n\r\n`;
             });
         });    
     }
@@ -283,20 +313,29 @@ kzzn.util.buildTable_result = function (arr_transaction) {
 
 kzzn.util.buildTransactionsAsText = function (arr_transactions){
     let str_result = '';
+        currentLanguage = kzzn.util.getCurrentLanguage(),
         arr_groupedByPayer = arr_transactions.reduce((r, a) => { // group transactions by payer.
             r[a.from] = [...r[a.from] || [], a];
             return r;
         }, {});
 
-    str_result += `*----{ RESULT TRANSACTIONS }----*\r\n\r\n`;
+    if (currentLanguage === 'english')
+        str_result += `*----{ RESULT TRANSACTIONS }----*\r\n\r\n`;
+    else if (currentLanguage === 'hebrew')
+        str_result += `*----{ טבלת התקזזות }----*\r\n\r\n`;
+
     $.each(arr_groupedByPayer, function (i, group) { 
         var payer = group[0].from;
 
-        str_result += `_*${payer}*_ should pay:\r\n`;
+        if (currentLanguage === 'english')
+            str_result += `_*${payer}*_ should pay:\r\n`;
+        else if (currentLanguage === 'hebrew')
+            str_result += `_*${payer}*_ אמור לשלם ל:\r\n`;
+
         $.each(group, function (i, transaction) { 
-            str_result += `            *${transaction.total}* --> *${transaction.to}*\r\n`;
+            str_result += `         *${transaction.total}* --> *${transaction.to}*\r\n`;
         });
-        str_result += `--------------------------\r\n`;
+        str_result += `--------------\r\n`;
     });
 
     return str_result;

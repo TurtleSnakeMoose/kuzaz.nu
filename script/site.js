@@ -13,7 +13,9 @@ $(function (){
 	setTimeout(function(){
 		// initialize js components
 		kzzn.util.initComponents();
-		// inject all text content into page.
-		kzzn.txt.injectText();
+		// inject text content into all help popups.
+		kzzn.txt.injectContentIntoHelpPopups();
+		// translate the site to the current language.
+		kzzn.txt.translateSiteToCurrentLanguage();
 	}, 200);
 })

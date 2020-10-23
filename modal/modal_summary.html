@@ -8,9 +8,9 @@
 			</div>
 
 			<div id="summary_mainpot">
-				<h4>Mainpot summary</h4>
+				<h4 data-translate='mainpot_summary'>Mainpot summary</h4>
 				<div class="div_pot_info">
-					<span class='span_contribs'>Mainpot contributors:</span>
+					<span class='span_contribs' data-translate='mainpot_contributors'>Mainpot contributors:</span>
 					<ul id="ul_mainpot_contrib"></ul>
 					<div id="mainpot_calc_summary"></div>
 					<div id="mainpot_multipayer_explain"></div>
@@ -21,9 +21,9 @@
 			
 			<div id="summary_sidepots">
 				<div class="modal_divider"></div>
-				<h4>Sidepot summary</h4>
+				<h4 data-translate='sidepot_summary'>Sidepot summary</h4>
 				<div class="div_pot_info">
-					<span class='span_contribs'>Sidepot contributors:</span>
+					<span class='span_contribs' data-translate='sidepot_contributors'>Sidepot contributors:</span>
 					<ul id="ul_sidepots_contrib"></ul>
 				</div>
 			</div>
@@ -38,7 +38,7 @@
 				<i class="fas fa-copy pointer" onclick="kzzn.summary.copyAsText(this)"></i>
 				<textarea class="clipboard_container" id="summary_clipboard_container" value=''></textarea> <!--this is used to store text when copying\sending via whatsapp-->
 			</div>
-			<button type="button" class="btn btn-primary" data-dismiss="modal">CLOSE</button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal" data-translate='close'>CLOSE</button>
 		</div>
 	</div>
 
@@ -47,7 +47,7 @@
 	<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center toast_container" style="min-height: 200px;">
 		<!-- Then put toasts within -->
 		<div id="div_toast_summary" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-			<div class="toast-body">
+			<div class="toast-body" data-translate='summary_copied'>
 				Summary copied as text to clipboard!
 			</div>
 		</div>

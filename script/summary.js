@@ -61,6 +61,7 @@ kzzn.summary.copyAsText = function(btn){
 // fill the summary modal's mainpot section with all mainpot info
 function display_mainpot_info(modal, data){
     let div_summary = $(modal).find('#summary_mainpot'),
+        currentLanguage = kzzn.util.getCurrentLanguage(),
         ul_contribs = div_summary.find('#ul_mainpot_contrib'),
         div_calc_summary = div_summary.find('#mainpot_calc_summary'),
         div_multipayer_explain = div_summary.find('#mainpot_multipayer_explain'),
@@ -73,20 +74,37 @@ function display_mainpot_info(modal, data){
         multipayers = [];
 
     $.each(data, function(i, participant){
-
-        ul_contribs.append(participant.mainpot > 0 ? `<li><strong>${participant.name}</strong> has contributed <strong>${participant.mainpot}</strong> to the main pot.</li>` : '');
-
+        
+        if (currentLanguage === 'english')
+            ul_contribs.append(participant.mainpot > 0 ? `<li><strong>${participant.name}</strong> has contributed <strong>${participant.mainpot}</strong> to the main pot.</li>` : '');
+        else if (currentLanguage === 'hebrew')
+            ul_contribs.append(participant.mainpot > 0 ? `<li><strong>${participant.name}</strong> תרם <strong>${participant.mainpot}</strong> לקופה הראשית.</li>` : '');
+            
         if(participant.count > 1)
             multipayers.push({name: participant.name, amount: participant.count * amount_per_participant});
     });
+    
+    if (currentLanguage === 'english')
+        div_calc_summary.append(`<strong>${mainpot_contribs.length} participants</strong> have contributed a total of <strong>${mainpot_sum}</strong> to the mainpot.<br>
+                                 Split evenly between <strong>${pCount} participants</strong> is <strong>${amount_per_participant}</strong>.`);
+    else if (currentLanguage === 'hebrew')
+        div_calc_summary.append(`<strong>${mainpot_contribs.length} משתתפים</strong> שילמו סכום של <strong>${mainpot_sum}</strong> לקופה הראשית.<br>
+                                 חלוקה שווה בין <strong>${pCount} משתתפים</strong> היא <strong>${amount_per_participant}</strong>.`);
 
-    div_calc_summary.append(`<strong>${mainpot_contribs.length} participants</strong> have contributed a total of <strong>${mainpot_sum}</strong> to the mainpot.<br>
-                              Split evenly between <strong>${pCount} participants</strong> is <strong>${amount_per_participant}</strong>.`);
+    
     
     if (multipayers.length > 0) {
-        div_multipayer_explain.append(`<strong>${multipayers.length} participants</strong> that are paying for multiple participants. their share is as follows:`);
+
+        if (currentLanguage === 'english')
+            div_multipayer_explain.append(`<strong>${multipayers.length} participants</strong> that are paying for multiple participants. their share is as follows:`);
+        else if (currentLanguage === 'hebrew')
+            div_multipayer_explain.append(`<strong>${multipayers.length} משתתפים</strong> משלמים עבור מספר משתתפים אחרים. החלק שלהם הוא:`);
+
         $.each(multipayers, function(i, multipayer){
-            ul_multipayers.append(`<li><strong>${multipayer.name}</strong> should pay <strong>${multipayer.amount}</strong> to the mainpot.</li>`);
+            if (currentLanguage === 'english')
+                ul_multipayers.append(`<li><strong>${multipayer.name}</strong> should pay <strong>${multipayer.amount}</strong> to the mainpot.</li>`);
+            else if (currentLanguage === 'hebrew')
+                ul_multipayers.append(`<li><strong>${multipayer.name}</strong> אמור/ה לשלם <strong>${multipayer.amount}</strong> לקופה הראשית.</li>`);
         });
     }
 }
@@ -94,14 +112,21 @@ function display_mainpot_info(modal, data){
 // fill the summary modal's sidepot section with all sidepot info
 function display_sidepots_info(modal, sidepot_contributors){
     let div_summary = $(modal).find('#summary_sidepots'),
-        ul_contribs = div_summary.find('#ul_sidepots_contrib');
-    
+        ul_contribs = div_summary.find('#ul_sidepots_contrib'),
+        currentLanguage = kzzn.util.getCurrentLanguage();
+
     $.each(sidepot_contributors, function (i, contributor) { 
         $.each(contributor.sidepots, function (i, sidepot) {
             let amount_per_participant = Math.round(sidepot.amount / sidepot.participants.length);
-            ul_contribs.append(`<li><strong>${contributor.name}</strong> has contributed <strong>${sidepot.amount}</strong> to a sidepot for:<br>
-                                <strong>${sidepot.participants.join(' , ')}</strong>.<br>
-                                which comes to <strong>${amount_per_participant} each</strong>.</li>`);
+            
+            if (currentLanguage === 'english')
+                ul_contribs.append(`<li><strong>${contributor.name}</strong> has contributed <strong>${sidepot.amount}</strong> to a sidepot for:<br>
+                                        <strong>${sidepot.participants.join(' , ')}</strong>.<br>
+                                        which comes to <strong>${amount_per_participant} each</strong>.</li>`);
+            else if (currentLanguage === 'hebrew')
+                ul_contribs.append(`<li><strong>${contributor.name}</strong> שילם <strong>${sidepot.amount}</strong> לקופה צדדית עבור:<br>
+                                    <strong>${sidepot.participants.join(' , ')}</strong>.<br>
+                                    מחולק בין המשתתפים <strong>${amount_per_participant} כל אחד</strong>.</li>`);
         });
     });
 }

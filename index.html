@@ -10,34 +10,35 @@
 	  <meta name="keywords" content="kuzaznu, kuzaz.nu, קוזזנו, התקזזות, break even, התחשבונות, חובות, Break-even">
 	  <meta name="author" content="Michael Roskin">
 	  
-	  <link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
+	  <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
 	  <link rel="icon" href="assets/logo/favicon.ico">
 	  <link href="style/bootstrap/bootstrap.min.css" rel="stylesheet">
 	  <link href="style/fontawsome/fontawesome.css" rel="stylesheet">
 	  <link href="style/fontawsome/solid.css" rel="stylesheet">
 	  <link href="style/fontawsome/brands.css" rel="stylesheet">
-	  <link href="style/main.css?v=171020" rel="stylesheet">
-	  <link href="style/small-devices.css?v=171020" rel="stylesheet">	
-	  <link href="style/large-devices.css?v=171020" rel="stylesheet"> 
+	  <link href="style/main.css?v=231020" rel="stylesheet">
+	  <link href="style/small-devices.css?v=231020" rel="stylesheet">	
+	  <link href="style/large-devices.css?v=231020" rel="stylesheet"> 
 	  
 	  <script src="script/jquery/jquery-3.5.1.min.js"></script>
 	  <script src="script/bootstrap/bootstrap.bundle.min.js"></script>
 	  <script src="script/popper/popper.js"></script>
 	  <script src="script/bsMultiSelect/BsMultiSelect.js"></script>
 
-	  <script src="script/txt.js?v=171020"></script>
-	  <script src="script/util.js?v=171020"></script>
-	  <script src="script/data.js?v=171020"></script>
-	  <script src="script/summary.js?v=171020"></script>
-	  <script src="script/calc.js?v=171020"></script>
-	  <script src="script/participants.js?v=171020"></script>
-	  <script src="script/payments.js?v=171020"></script>
-	  <script src="script/result.js?v=171020"></script>
-	  <script src="script/importExport.js?v=171020"></script>
-	  <script src="script/site.js?v=171020"></script>
+	  <script src="script/translate.js?v=231020"></script>
+	  <script src="script/txt.js?v=231020"></script>
+	  <script src="script/util.js?v=231020"></script>
+	  <script src="script/data.js?v=231020"></script>
+	  <script src="script/summary.js?v=231020"></script>
+	  <script src="script/calc.js?v=231020"></script>
+	  <script src="script/participants.js?v=231020"></script>
+	  <script src="script/payments.js?v=231020"></script>
+	  <script src="script/result.js?v=231020"></script>
+	  <script src="script/importExport.js?v=231020"></script>
+	  <script src="script/site.js?v=231020"></script>
 	</head>
 	
-	<body class="ltr">
+	<body class="rtl" data-language='hebrew'>
 		<div id="content"> 
 			<img id="logo_main" src="assets/logo/logo_kuzaznu.svg">
 
@@ -47,15 +48,21 @@
 				<div id="section_participants" class="section" data-section-for="participants">
 
 					<div class="info_box">
-						<label class="bold title">PARTICIPANT LIST</label>
+
+						<div id='tempLanguageSelector'>
+							<span class="pointer bold" data-direction='ltr' data-language='english' onclick="kzzn.txt.switchLanguage(this)">EN</span> | 
+							<span class="pointer bold" data-direction='rtl' data-language='hebrew' onclick="kzzn.txt.switchLanguage(this)">HE</span>
+						</div>
+
+						<label data-translate='participant_list' class="bold title">PARTICIPANT LIST</label>
 						<i tabindex="0" class="fas fa-question-circle pointer additional_info" data-for="section_participants" role="button" data-html="true" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=""></i>
 					</div>
 
 					<div id="participant_inputs">
 						<div class="input-group">
-							<input id="input_name" placeholder="Name" type="text" maxlength="20" class="form-control">
+							<input id="input_name" placeholder="Name" type="text" maxlength="20" class="form-control" data-translate='name'>
 							<div class="input-group-append btn_add" onclick="kzzn.participants.addParticipant(this)">
-								<button class="btn btn-outline-secondary" type="button">ADD</button>
+								<button class="btn btn-outline-secondary" type="button" data-translate='add'>ADD</button>
 							</div>
 						</div>
 					</div>
@@ -64,7 +71,7 @@
 						<table class="hidden">
 							<thead>
 								<tr>
-									<td>#</td><td>Name</td><td>Count</td>
+									<td>#</td><td data-translate='name'>Name</td><td data-translate='count'>Count</td>
 								</tr>
 							</thead>
 							<tbody>
@@ -77,9 +84,9 @@
 							<label></label>
 						</div>
 						<div class="div_buttons">
-							<i class="fas fa-archive pointer" title="Import / export data" onclick="kzzn.importExport.openImportExportModal()"></i>
-							<button type="button" id="btn_summary" class="btn btn-primary" disabled onclick="kzzn.summary.openSummaryModal()">SUMMARY</button>
-							<button type="button" id="btn_calculate" class="btn btn-primary" disabled onclick="kzzn.result.openResultModal()">CALCULATE</button>
+							<i class="fas fa-archive pointer" onclick="kzzn.importExport.openImportExportModal()"></i>
+							<button type="button" id="btn_summary" class="btn btn-primary" disabled onclick="kzzn.summary.openSummaryModal()" data-translate='summary'>SUMMARY</button>
+							<button type="button" id="btn_calculate" class="btn btn-primary" disabled onclick="kzzn.result.openResultModal()" data-translate='calculate'>CALCULATE</button>
 						</div>
 					</div>
 

@@ -5,15 +5,15 @@ kzzn.data = kzzn.data || {};
 kzzn.data._hardCodedData = [
     {
         name: 'a', // change later to some other name
-        data: [{ name: 'Jinji', count: 2, mainpot: 1158, sidepots: [] },
-                { name: 'Mini', count: 1, mainpot: 100, sidepots: [{amount: 400, participants: ['Jinji','Igor','Yan','Bomj','Mini','Slava']}, {amount: 200, participants: ['Blecher','Fishkin','Slava','Mini']}] },
-                { name: 'Igor', count: 2, mainpot: 424, sidepots: [] },
-                { name: 'Yan', count: 2, mainpot: 50, sidepots: [] },
-                { name: 'Bomj', count: 2, mainpot: 0, sidepots: [] },
-                { name: 'Slava', count: 2, mainpot: 200, sidepots: [{amount: 400, participants: ['Jinji','Mini','Slava','Blecher']}] },
-                { name: 'Blecher', count: 1, mainpot: 0, sidepots: [] },
-                { name: 'Roi', count: 2, mainpot: 0, sidepots: [] },
-                { name: 'Fishkin', count: 2, mainpot: 0, sidepots: [] }
+        data: [{ name: "ג'ינג'י", count: 2, mainpot: 1158, sidepots: [] },
+                { name: 'מיני', count: 1, mainpot: 100, sidepots: [{amount: 400, participants: ["ג'ינג'י",'איגור','יאן','בומש','מיני','סלבה']}, {amount: 200, participants: ['בלכר','פישקין','סלבה','מיני']}] },
+                { name: 'איגור', count: 2, mainpot: 424, sidepots: [] },
+                { name: 'יאן', count: 2, mainpot: 50, sidepots: [] },
+                { name: 'בומש', count: 2, mainpot: 0, sidepots: [] },
+                { name: 'סלבה', count: 2, mainpot: 200, sidepots: [{amount: 400, participants: ["ג'ינג'י",'מיני','סלבה','בלכר']}] },
+                { name: 'בלכר', count: 1, mainpot: 0, sidepots: [] },
+                { name: 'רועי', count: 2, mainpot: 0, sidepots: [] },
+                { name: 'פישקין', count: 2, mainpot: 0, sidepots: [] }
             ]
     },
     {
