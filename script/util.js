@@ -220,7 +220,7 @@ kzzn.util.sidepotList_addRow = function (tbody, data){
                             <span class='sp_amount' data-amount='${data.amount}'>${data.amount}</span>
                         </td>
                         <td>
-                            <span class='sp_participants' data-arr-participants='${data.participants}'>${str_participants}</span>
+                            <span class='sp_participants' data-arr-participants="${data.participants}">${str_participants}</span>
                         </td>
                         <td>
                             <i class="fas fa-trash pointer" onclick="kzzn.payments.removeFromSidePotTable(this)" title='Remove sidepot'></i>

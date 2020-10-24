@@ -27,7 +27,7 @@ kzzn.data._hardCodedData = [
 ];
 
 kzzn.data.Participant = function (obj) {
-    this.name = obj.Name || '';
+    this.name = obj.Name || ``;
     this.count = obj.Count || 1;
     this.mainpot = obj.MainPot || null;
     this.sidepots = obj.SidePots || [];

@@ -6,7 +6,7 @@ kzzn.participants.addParticipant = function(button) {
     let input_name = $(button).siblings('#input_name'),
         input_count = $(button).siblings('#input_count'),
         hardcoded_groups = kzzn.data._hardCodedData.map(a => a.name),
-        name = $.trim(input_name.val()),
+        name = $.trim(input_name.val().replaceAll('"', '')),
         count = input_count.val() || 1,
         tbody = $('#participant_list tbody'),
         table = tbody.closest('table'),
